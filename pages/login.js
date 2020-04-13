@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import SignIn from "../components/SignIn";
 
 const Home = (props) => {
-    return (<Layout locale={props.locale} title="#WannaWash?">
+    return (<Layout locale={props.locale} title="Flairtable - Login">
             <main>
                 <SignIn/>
             </main>

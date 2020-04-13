@@ -28,9 +28,6 @@ export default (props) => {
     }, []);
     return (
         <div className="signin--container">
-            <h1 className="signin__header">
-                #WannaWash?
-            </h1>
             <form>
                 <button
                     className="button"
