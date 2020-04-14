@@ -6,7 +6,7 @@ import "firebase/database";
 
 const config = {
     apiKey: "AIzaSyDlR9tAwGBy1-9uMmrF6_ZmXxXHS3QZxzg",
-    authDomain: "flairtable.firebaseapp.com",
+    authDomain: "flairtable.com",
     databaseURL: "https://flairtable.firebaseio.com",
     projectId: "flairtable",
     storageBucket: "flairtable.appspot.com",
