@@ -63,7 +63,7 @@ export default (props) => {
                     </button>
                     <button
                         className="button"
-                        onClick={onFacebookClick(router)}
+                        onClick={onGithubClick(router)}
                         id="login-button"
                     >
                         <span className="button__text">
@@ -110,9 +110,9 @@ const onGoogleClick = (router) => (e) => {
     signInHandler(provider, router)
 
 };
-const onFacebookClick = (router) => (e) => {
+const onGithubClick = (router) => (e) => {
     e.preventDefault();
-    let provider = new firebase.auth.FacebookAuthProvider();
+    let provider = new firebase.auth.GithubAuthProvider();
     signInHandler(provider, router)
 
 };
