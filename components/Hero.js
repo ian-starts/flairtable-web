@@ -26,13 +26,13 @@ const Hero = (props) => {
                 @apply text-custom-hard-pink
               }
               .form {
-                @apply self-center mt-12 w-full px-10 flex flex-row;
+                @apply self-center mt-12 w-full px-10 flex flex-row mx-10;
               }
               .form--input{
                 @apply px-3 py-2 bg-gray-300 rounded w-full font-sans;
               }
               .form--submit {
-                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 ml-5 mr-10 rounded-lg;
+                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 ml-5 rounded-lg;
                 transition: transform .3s ease-out,-webkit-transform .3s ease-out;
               }
               .form--submit:hover{
