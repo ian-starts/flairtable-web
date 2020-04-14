@@ -28,39 +28,77 @@ export default (props) => {
     }, []);
     return (
         <div className="signin--container">
+            <div className="flex flex-1">
+                <div
+                    className="signin--logo">
+                    <img alt="logo" src="/assets/images/logo-flairtable.svg"/>
+                </div>
+                <h1 className="signin--banner">Flairtable</h1>
+            </div>
             <form>
-                <button
-                    className="button"
-                    onClick={onGoogleClick(router)}
-                    id="login-button"
-                >
+                <div className="signin--email">
+                    <input type="email" placeholder={"Enter your email"} name="email" className="form--input"
+                           value={props.email}/>
+                    <input type="password" placeholder={"Enter your Password"} name="password" className="form--input"/>
+                    <div>
+                        <button
+                            className="email--button"
+                            id="login-button"
+                        >
                         <span className="button__text">
-                            Login with Google
+                            {props.type}
                         </span>
-                </button>
-                <button
-                    className="button"
-                    onClick={onFacebookClick(router)}
-                    id="login-button"
-                >
+                        </button>
+                    </div>
+                </div>
+                <div className="signin--providers">
+                    <button
+                        className="button"
+                        onClick={onGoogleClick(router)}
+                        id="login-button"
+                    >
                         <span className="button__text">
-                            Login with Facebook
+                            {`${props.type} with Google`}
                         </span>
-                </button>
+                    </button>
+                    <button
+                        className="button"
+                        onClick={onFacebookClick(router)}
+                        id="login-button"
+                    >
+                        <span className="button__text">
+                            {`${props.type} with Github`}
+                        </span>
+                    </button>
+                </div>
             </form>
             <style jsx>{`
+              .signin--banner{
+                  @apply text-gray-800 py-5 self-center font-sans text-xl 
+              }
+              .signin--logo{
+                  @apply ml-3 self-center mr-4 py-2 flex w-16 h-16;
+              }
                 .signin__header {
                     @apply text-5xl text-gray-600 underline mb-10 font-sans;
                 }
                 .signin--container{
                     @apply flex flex-1 items-center mt-20 flex-col font-bold;
                 }
+                .signin--email{
+                  @apply flex flex-1 flex-col p-10 bg-blue-100 mb-10
+                }
                 .button{
-                    @apply rounded-full px-5 py-2 bg-primary m-2;
-                    background-color: #e86ed0;
+                    @apply rounded-full px-5 py-2 m-2 bg-custom-hard-pink;         
                 }
                 .button__text {
                     @apply text-lg text-white font-sans;
+                }
+                .email--button{
+                    @apply rounded-full px-5 py-2 my-3 bg-custom-hard-pink;
+                }
+                .form--input{
+                  @apply px-3 py-2 bg-gray-300 rounded w-full my-2
                 }
              `}</style>
         </div>)

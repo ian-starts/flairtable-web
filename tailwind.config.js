@@ -9,14 +9,16 @@ module.exports = {
                 '8xl': '6rem'
             },
             backgroundColor: theme => ({
-                'primary': '#ecfcff',
-                'secondary': '#edb5f5',
-                'tertiary': '#e86ed0'
+                'custom-white': '#fdfdfd',
+                'custom-blue': '#18BFFF',
+                'custom-pink': '#edb5f5',
+                'custom-hard-pink': '#FCB400',
             }),
             textColor: theme => ({
-                'primary': '#f3f3f3',
-                'secondary': '#edb5f5',
-                'tertiary': '#e86ed0'
+                'custom-white': '#fdfdfd',
+                'custom-blue': '#18BFFF',
+                'custom-pink': '#edb5f5',
+                'custom-hard-pink': '#FCB400',
             }),
             minWidth: {
                 '0': '0',
@@ -24,6 +26,7 @@ module.exports = {
                 '0.8': '0.8rem',
                 '1': '1rem',
                 '2': '2rem',
+                '3': '3rem',
                 '10': '10rem',
                 '15': '15rem',
                 '20': '20rem',

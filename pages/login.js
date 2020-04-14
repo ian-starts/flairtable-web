@@ -2,12 +2,12 @@ import React from 'react';
 import Layout from "../components/Layout";
 import SignIn from "../components/SignIn";
 
-const Home = (props) => {
+const Login = (props) => {
     return (<Layout locale={props.locale} title="Flairtable - Login">
             <main>
-                <SignIn/>
+                <SignIn type={"Sign in"}/>
             </main>
         </Layout>
     )
 };
-export default Home;
+export default Login;

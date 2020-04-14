@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import WithProfile from "../hocs/WithProfile";
-import * as authService from '../services/authService';
+import Header from "../components/Header";
+import Hero from '../components/Hero';
 
 const Home = (props) => {
     const [reservations, setReservations] = useState([]);
     useEffect(() => {
-
     }, []);
     return (<div>
-            <Layout locale={props.locale} title="Flairtable">
-
+            <Layout locale={props.locale} title="Flairtable - Airtable for your frontend">
+            <Header/>
+            <Hero/>
             </Layout>
             <style jsx>{`
                 .reserve-row__block {
@@ -28,4 +29,4 @@ const Home = (props) => {
         </div>
     )
 };
-export default WithProfile(Home);
+export default Home;
