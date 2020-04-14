@@ -86,7 +86,7 @@ export default (props) => {
                     @apply flex flex-1 items-center mt-20 flex-col font-bold;
                 }
                 .signin--email{
-                  @apply flex flex-1 flex-col p-10 bg-blue-100 mb-10
+                  @apply flex flex-1 flex-col p-10 bg-blue-100 mb-10;
                 }
                 .button{
                     @apply rounded-full px-5 py-2 m-2 bg-custom-hard-pink;         
@@ -98,7 +98,7 @@ export default (props) => {
                     @apply rounded-full px-5 py-2 my-3 bg-custom-hard-pink;
                 }
                 .form--input{
-                  @apply px-3 py-2 bg-gray-300 rounded w-full my-2
+                  @apply px-3 py-2 bg-gray-300 rounded w-full my-2 font-sans;
                 }
              `}</style>
         </div>)

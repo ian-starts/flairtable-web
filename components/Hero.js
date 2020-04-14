@@ -29,7 +29,7 @@ const Hero = (props) => {
                 @apply self-center mt-12 w-full px-10 flex flex-row;
               }
               .form--input{
-                @apply px-3 py-2 bg-gray-300 rounded w-full
+                @apply px-3 py-2 bg-gray-300 rounded w-full font-sans;
               }
               .form--submit {
                 @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 ml-5 mr-10 rounded-lg;
