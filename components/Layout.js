@@ -15,19 +15,19 @@ export default (props) => {
                 <title>{props.title}</title>
                 <meta name="title" content={props.title}/>
                 <meta name="description"
-                      content={"Help mee om alle initiatieven rondom COVID-19 in kaart te brengen!"}/>
+                      content={"Flairtable | Securely use your Airtable API keys anywhere"}/>
 
                 <meta property="og:type" content="website"/>
-                <meta property="og:url" content="https://helpdehelpers.nl/"/>
+                <meta property="og:url" content="https://flairtable.com/"/>
                 <meta property="og:title" content={props.title}/>
                 <meta property="og:description"
-                      content={"Help mee om alle initiatieven rondom COVID-19 in kaart te brengen!"}/>
+                      content={"Flairtable | Securely use your Airtable API keys anywhere!"}/>
 
                 <meta property="twitter:card" content="summary_large_image"/>
-                <meta property="twitter:url" content="https://helpdehelpers.nl/"/>
+                <meta property="twitter:url" content="https://flairtable.com/"/>
                 <meta property="twitter:title" content={props.title}/>
                 <meta property="twitter:description"
-                      content={"Help mee om alle initiatieven rondom COVID-19 in kaart te brengen!"}/>
+                      content={"Flairtable | Securely use your Airtable API keys anywhere"}/>
             </Head>
             {props.children}
         </div>
