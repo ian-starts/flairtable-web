@@ -9,9 +9,9 @@ export default (Component) => {
         useEffect(() => {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    setLoading(false);
+                    router.replace('/console');
                 } else {
-                    router.replace('/');
+                    setLoading(false);
                 }
             });
         },[]);

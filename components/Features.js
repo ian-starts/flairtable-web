@@ -1,14 +1,12 @@
 import React from 'react';
 import Link from "next/link";
 
-const Hero = (props) => {
+const Features = (props) => {
     return (
-        <div className="flex flex-1 justify-center">
-            <div className="hero">
-                <h1 className="hero--header">
-                    <span className="hero--header-accent">Secure</span> and <span
-                    className="hero--header-accent">scope</span> your Airtable API key to directly use it in your
-                    frontend or client.
+        <div className="flex flex-1 justify-center mt-20">
+            <div className="feature">
+                <h1 className="feature--header">
+                    Designed for
                 </h1>
                 <form className="form" action="/signup">
                     <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>
@@ -16,13 +14,13 @@ const Hero = (props) => {
                 </form>
             </div>
             <style jsx>{`
-              .hero {
-                  @apply flex flex-1 flex-col max-w-2xl mt-20;
+              .feature {
+                  @apply flex flex-1 flex-row max-w-2xl mt-20;
               }
-              .hero--header{
-                  @apply font-sans text-4xl font-bold text-gray-700 text-center mt-10 px-2;
+              .feature--header{
+                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-10 px-2;
               }
-              .hero--header-accent{
+              .feature--header-accent{
                 @apply text-custom-hard-pink
               }
               .form {
@@ -51,4 +49,4 @@ const Hero = (props) => {
     )
 };
 
-export default Hero;
+export default Features;

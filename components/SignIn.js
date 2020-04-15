@@ -1,31 +1,29 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import firebase from "firebase";
 import {useRouter} from "next/router";
+import Google from "../svgs/logo-google.svg";
+import Github from "../svgs/logo-github.svg";
 
 export default (props) => {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState(props.email ?? "");
+    const [password, setPassword] = useState("");
+
     useEffect(() => {
-        firebase.auth().getRedirectResult().then(function (result) {
-            let user = result.user;
+        firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 router.push('/');
-                user.getIdToken().then(
-                    t => {
-                        window.localStorage.setItem('idToken', t);
-                    }
-                );
+            } else {
+                // No user is signed in.
             }
-        }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            console.log(errorCode, errorMessage, email, credential)
         });
     }, []);
+
+    useEffect(() => {
+        setEmail(props.email ?? "");
+    }, [props.email]);
+
     return (
         <div className="signin--container">
             <div className="flex flex-1">
@@ -35,19 +33,29 @@ export default (props) => {
                 </div>
                 <h1 className="signin--banner">Flairtable</h1>
             </div>
-            <form>
+            <form onSubmit={props.type === "Sign in" ? onEmailNameAndPasswordSignInClick(email, password, setLoading) :
+                    onEmailNameAndPasswordSignUpClick(email, password, setLoading)}>
                 <div className="signin--email">
-                    <input type="email" placeholder={"Enter your email"} name="email" className="form--input"
-                           value={props.email}/>
-                    <input type="password" placeholder={"Enter your Password"} name="password" className="form--input"/>
+                    <input type="email" placeholder={"Enter your email"} name="email" className="form--input" required
+                           onChange={(e) => setEmail(e.target.value)}
+                           value={email}/>
+                    <input type="password" placeholder={"Enter your Password"} name="password" className="form--input" required
+                           onChange={(e) => setPassword(e.target.value)}
+                           value={password}/>
                     <div>
                         <button
                             className="email--button"
                             id="login-button"
+                            type="submit"
                         >
-                        <span className="button__text">
+                            {loading ? <div className="flex flex-row">
+                                    <div className="loader mr-3"/>
+                                    <span className="button__text">
                             {props.type}
-                        </span>
+                        </span></div> :
+                                <span className="button__text">
+                            {props.type}
+                        </span>}
                         </button>
                     </div>
                 </div>
@@ -57,6 +65,7 @@ export default (props) => {
                         onClick={onGoogleClick(router)}
                         id="login-button"
                     >
+                        <Google className="self-center mr-4"/>
                         <span className="button__text">
                             {`${props.type} with Google`}
                         </span>
@@ -66,6 +75,7 @@ export default (props) => {
                         onClick={onGithubClick(router)}
                         id="login-button"
                     >
+                        <Github className="self-center mr-4"/>
                         <span className="button__text">
                             {`${props.type} with Github`}
                         </span>
@@ -89,16 +99,19 @@ export default (props) => {
                   @apply flex flex-1 flex-col p-10 bg-blue-100 mb-10;
                 }
                 .button{
-                    @apply rounded-full px-5 py-2 m-2 bg-custom-hard-pink;         
+                    @apply rounded-full px-5 py-2 m-2 border-gray-700 border flex flex-1 flex-row justify-center;
                 }
                 .button__text {
-                    @apply text-lg text-white font-sans;
+                    @apply text-lg text-gray-800 font-sans whitespace-no-wrap;
                 }
                 .email--button{
                     @apply rounded-full px-5 py-2 my-3 bg-custom-hard-pink;
                 }
                 .form--input{
                   @apply px-3 py-2 bg-gray-300 rounded w-full my-2 font-sans;
+                }
+                .signin--providers{
+                  @apply flex flex-1 flex-row
                 }
              `}</style>
         </div>)
@@ -115,6 +128,32 @@ const onGithubClick = (router) => (e) => {
     let provider = new firebase.auth.GithubAuthProvider();
     signInHandler(provider, router)
 
+};
+const onEmailNameAndPasswordSignInClick = (email, password, setLoading) => (e) => {
+    setLoading(true);
+    e.preventDefault();
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        setLoading(false);
+        alert(errorMessage);
+        // ...
+    });
+
+};
+
+const onEmailNameAndPasswordSignUpClick = (email, password, setLoading) => (e) => {
+    setLoading(true);
+    e.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        setLoading(false);
+        alert(errorMessage);
+        // ...
+    });
 };
 
 const signInHandler = (provider, router) => {

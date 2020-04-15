@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import SignIn from "../components/SignIn";
+import WithoutProfile from "../hocs/WithoutProfile";
 
 const Signup = (props) => {
     const [email, setEmail] = useState("");
@@ -15,4 +16,4 @@ const Signup = (props) => {
         </Layout>
     )
 };
-export default Signup;
+export default WithoutProfile(Signup);
