@@ -20,19 +20,19 @@ const Hero = (props) => {
                   @apply flex flex-1 flex-col max-w-2xl mt-20;
               }
               .hero--header{
-                  @apply font-sans text-4xl font-bold text-gray-700 text-center mt-10 px-2;
+                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2;
               }
               .hero--header-accent{
                 @apply text-custom-hard-pink
               }
               .form {
-                @apply self-center mt-12 w-full px-10 flex flex-row mx-10;
+                @apply self-center mt-12 w-full px-10 flex flex-row mx-10 flex-wrap justify-center;
               }
               .form--input{
-                @apply px-3 py-2 bg-gray-300 rounded w-full font-sans;
+                @apply px-3 py-2 bg-gray-300 rounded w-full font-sans max-w-sm;
               }
               .form--submit {
-                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 ml-5 rounded-lg;
+                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-center;
                 transition: transform .3s ease-out,-webkit-transform .3s ease-out;
               }
               .form--submit:hover{
@@ -41,6 +41,12 @@ const Hero = (props) => {
               @screen sm {
                 .form{
                   @apply px-20
+                }
+                .form--submit{
+                  @apply ml-5 mt-0;
+                }
+                .hero--header{
+                  @apply text-4xl mt-10;
                 }
               }
               @screen md {

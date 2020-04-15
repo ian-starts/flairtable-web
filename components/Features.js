@@ -3,16 +3,16 @@ import Link from "next/link";
 
 const Features = (props) => {
     return (
-        <div className="flex flex-1 justify-center mt-20">
-            <div className="feature">
-                <h1 className="feature--header">
-                    Designed for
-                </h1>
-                <form className="form" action="/signup">
-                    <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>
-                    <button className="form--submit" type="submit">Let's Go</button>
-                </form>
-            </div>
+        <div className="flex flex-1 justify-center">
+            {/*<div className="feature">*/}
+                {/*<h1 className="feature--header">*/}
+                {/*    Designed for*/}
+                {/*</h1>*/}
+                {/*<form className="form" action="/signup">*/}
+                {/*    <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>*/}
+                {/*    <button className="form--submit" type="submit">Let's Go</button>*/}
+                {/*</form>*/}
+            {/*</div>*/}
             <style jsx>{`
               .feature {
                   @apply flex flex-1 flex-row max-w-2xl mt-20;

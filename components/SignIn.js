@@ -34,12 +34,13 @@ export default (props) => {
                 <h1 className="signin--banner">Flairtable</h1>
             </div>
             <form onSubmit={props.type === "Sign in" ? onEmailNameAndPasswordSignInClick(email, password, setLoading) :
-                    onEmailNameAndPasswordSignUpClick(email, password, setLoading)}>
+                onEmailNameAndPasswordSignUpClick(email, password, setLoading)}>
                 <div className="signin--email">
                     <input type="email" placeholder={"Enter your email"} name="email" className="form--input" required
                            onChange={(e) => setEmail(e.target.value)}
                            value={email}/>
-                    <input type="password" placeholder={"Enter your Password"} name="password" className="form--input" required
+                    <input type="password" placeholder={"Enter your Password"} name="password" className="form--input"
+                           required
                            onChange={(e) => setPassword(e.target.value)}
                            value={password}/>
                     <div>
@@ -93,7 +94,7 @@ export default (props) => {
                     @apply text-5xl text-gray-600 underline mb-10 font-sans;
                 }
                 .signin--container{
-                    @apply flex flex-1 items-center mt-20 flex-col font-bold;
+                    @apply flex flex-1 items-center mt-4 flex-col font-bold;
                 }
                 .signin--email{
                   @apply flex flex-1 flex-col p-10 bg-blue-100 mb-10;
@@ -111,7 +112,12 @@ export default (props) => {
                   @apply px-3 py-2 bg-gray-300 rounded w-full my-2 font-sans;
                 }
                 .signin--providers{
-                  @apply flex flex-1 flex-row
+                  @apply flex flex-1 flex-row flex-wrap
+                }
+                @screen sm {
+                  .signin--container{
+                    @apply mt-20;
+                  }
                 }
              `}</style>
         </div>)
