@@ -80,7 +80,7 @@ const Header = (props) => {
                 @apply self-center text-gray-100 font-sans font-hairline text-lg
                 }
                 .menu--item{
-                  @apply text-gray-600 mx-1 font-sans text-sm transition duration-200 ease-in-out whitespace-no-wrap;
+                  @apply text-gray-600 mx-1 font-sans transition duration-200 ease-in-out whitespace-no-wrap;
                 }
                 .menu--item-accent{
                   @apply text-blue-500 transition duration-200 ease-in-out;
