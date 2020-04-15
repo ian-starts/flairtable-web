@@ -59,7 +59,7 @@ const Header = (props) => {
 
             <style jsx>{`
                 .hamburger-menu--item{
-                  @apply w-screen bg-gray-600 text-white min-h-5 text-center m-auto flex justify-center items-center;
+                  @apply w-screen bg-gray-600 text-white min-h-5 text-center m-auto flex justify-center items-center font-sans;
                 }
                 .hamburger-menu--item-accent {
                 @apply bg-blue-700

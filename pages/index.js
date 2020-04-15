@@ -6,10 +6,6 @@ import WithoutProfile from "../hocs/WithoutProfile";
 import Features from "../components/Features";
 
 const Home = (props) => {
-    const [reservations, setReservations] = useState([]);
-    useEffect(() => {
-
-    }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Airtable for your frontend">
             <Header/>
