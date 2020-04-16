@@ -4,45 +4,58 @@ import Link from "next/link";
 const Features = (props) => {
     return (
         <div className="flex flex-1 justify-center">
-            {/*<div className="feature">*/}
-                {/*<h1 className="feature--header">*/}
-                {/*    Designed for*/}
-                {/*</h1>*/}
-                {/*<form className="form" action="/signup">*/}
-                {/*    <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>*/}
-                {/*    <button className="form--submit" type="submit">Let's Go</button>*/}
-                {/*</form>*/}
-            {/*</div>*/}
+            <div className="feature">
+                <div className="max-w-full md:max-w-28 my-2">
+                    <h1 className="feature--header">
+                        Safely build reactive apps, with Airtable as a datasource.
+                    </h1>
+                    <p className="feature--description">
+                        Storing your Airtable API key in your frontend or client is unsafe. Everyone will have complete
+                        control over your base, and worst case: over your Airtable account. Flairtable fixes that.
+                    </p>
+                </div>
+                <div className="feature--video my-2 mx-4">
+                    <div className="max-w-38 min-w-18">
+                        <video muted="muted" autoplay="autoplay" loop="loop">
+                            <source src="/assets/videos/flairtable.mp4" type="video/mp4"/>
+                        </video>
+                    </div>
+                </div>
+            </div>
             <style jsx>{`
               .feature {
-                  @apply flex flex-1 flex-row max-w-2xl mt-20;
+                  @apply flex flex-1 flex-row mt-20 max-w-5xl mb-20 flex-wrap mx-5;
               }
               .feature--header{
-                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-10 px-2;
+                  @apply font-sans text-lg font-bold text-gray-700 text-center mt-10 px-2;
               }
-              .feature--header-accent{
-                @apply text-custom-hard-pink
+              .feature--video{
+                  @apply flex flex-1 justify-center self-center
               }
-              .form {
-                @apply self-center mt-12 w-full px-10 flex flex-row mx-10;
-              }
-              .form--input{
-                @apply px-3 py-2 bg-gray-300 rounded w-full font-sans;
-              }
-              .form--submit {
-                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 ml-5 rounded-lg;
-                transition: transform .3s ease-out,-webkit-transform .3s ease-out;
-              }
-              .form--submit:hover{
-                transform: scale(1.05);
+              .feature--description {
+                @apply text-gray-700 px-2 py-1 mt-2 text-center font-sans;
               }
               @screen sm {
-                .form{
-                  @apply px-20
-                }
+                 
               }
               @screen md {
-                
+                .feature--header{
+                  @apply text-left;
+                  }
+                  .feature--video{
+                      @apply justify-end
+                  }
+                  .feature--description {
+                    @apply text-left
+                  }
+              }
+              @screen lg {
+                .feature--header{
+                  @apply text-2xl;
+                  }
+                  .feature--description {
+                    @apply text-lg
+                  }
               }
             `}</style>
         </div>

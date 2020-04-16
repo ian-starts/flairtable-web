@@ -6,9 +6,8 @@ const Hero = (props) => {
         <div className="flex flex-1 justify-center">
             <div className="hero">
                 <h1 className="hero--header">
-                    <span className="hero--header-accent">Secure</span> and <span
-                    className="hero--header-accent">scope</span> your Airtable API key to directly use it in your
-                    frontend or client.
+                    Frontend safe Airtable. <br/> <span className="hero--header-accent">Secure</span> and <span
+                    className="hero--header-accent">scope</span> your API key with Flairtable.
                 </h1>
                 <form className="form" action="/signup">
                     <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>

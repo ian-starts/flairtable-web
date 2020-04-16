@@ -85,7 +85,7 @@ export default (props) => {
             </form>
             <style jsx>{`
               .signin--banner{
-                  @apply text-gray-800 py-5 self-center font-sans text-xl 
+                  @apply text-gray-800 py-5 self-center font-sans text-lg font-medium
               }
               .signin--logo{
                   @apply ml-3 self-center mr-4 py-2 flex w-16 h-16;

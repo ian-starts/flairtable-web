@@ -12,6 +12,7 @@ const Console = (props) => {
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Airtable for your frontend">
+
             </Layout>
             <style jsx>{`
                 .reserve-row__block {
