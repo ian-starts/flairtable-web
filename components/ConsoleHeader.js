@@ -33,7 +33,7 @@ const ConsoleHeader = (props) => {
                     <a className="hamburger-menu--item hamburger-menu--item-accent" onClick={props.onSignoutClick}
                        href={'#'}>Sign Out</a>
                     <Link href={"#"}><a
-                        className="menu--item">Docs</a></Link>
+                        className="hamburger-menu--item">Docs</a></Link>
                     <Link href={"#"}><a
                         className="hamburger-menu--item">Pricing</a></Link>
                 </div>
