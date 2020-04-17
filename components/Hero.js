@@ -22,7 +22,7 @@ const Hero = (props) => {
                   @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2;
               }
               .hero--header-accent{
-                @apply text-custom-hard-pink
+                @apply text-custom-orange
               }
               .form {
                 @apply self-center mt-12 w-full px-10 flex flex-row mx-10 flex-wrap justify-center;

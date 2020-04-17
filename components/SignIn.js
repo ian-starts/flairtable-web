@@ -106,7 +106,7 @@ export default (props) => {
                     @apply text-lg text-gray-800 font-sans whitespace-no-wrap;
                 }
                 .email--button{
-                    @apply rounded-full px-5 py-2 my-3 bg-custom-hard-pink;
+                    @apply rounded-full px-5 py-2 my-3 bg-custom-orange;
                 }
                 .form--input{
                   @apply px-3 py-2 bg-gray-300 rounded w-full my-2 font-sans;
