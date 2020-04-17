@@ -29,7 +29,7 @@ const ConsoleHeader = (props) => {
                 </div>
             </div>
             {menu ? <div className="relative">
-                <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col">
+                <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col z-10">
                     <a className="hamburger-menu--item hamburger-menu--item-accent" onClick={props.onSignoutClick}
                        href={'#'}>Sign Out</a>
                     <Link href={"#"}><a
