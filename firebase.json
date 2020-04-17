@@ -7,10 +7,11 @@
       "**/node_modules/**"
     ],
     "cleanUrls": true,
-    "rewrites": [ {
-      "source": "/api/v1",
-      "function": "table"
-    } ]
-
+    "rewrites": [
+      {
+        "source": "/api/v1",
+        "function": "table"
+      }
+    ]
   }
 }

@@ -24,6 +24,6 @@ jobs:
     - name: run build
       run: npm run export
     - name: deploy to firebase
-      run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_CLI_KEY }}
+      run: firebase deploy --token ${{ secrets.FIREBASE_CLI_KEY }}
       env:
         CI: true
