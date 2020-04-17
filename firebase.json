@@ -9,8 +9,8 @@
     "cleanUrls": true,
     "rewrites": [
       {
-        "source": "/api/v1{,/**}",
-        "function": "table"
+        "source": "/api{,/**}",
+        "function": "api"
       }
     ]
   }
