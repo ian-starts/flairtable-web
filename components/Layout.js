@@ -22,12 +22,14 @@ export default (props) => {
                 <meta property="og:title" content={props.title}/>
                 <meta property="og:description"
                       content={"Flairtable | Securely use your Airtable API keys anywhere!"}/>
+                <meta property="og:image" content="https://flairtable.com/assets/images/metatag.jpg"/>
 
                 <meta property="twitter:card" content="summary_large_image"/>
                 <meta property="twitter:url" content="https://flairtable.com/"/>
                 <meta property="twitter:title" content={props.title}/>
                 <meta property="twitter:description"
                       content={"Flairtable | Securely use your Airtable API keys anywhere"}/>
+                <meta property="og:image" content="https://flairtable.com/assets/images/metatag.jpg"/>
             </Head>
             {props.children}
         </div>
