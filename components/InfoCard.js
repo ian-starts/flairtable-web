@@ -6,7 +6,7 @@ const InfoCard = (props) => {
         <div className="flex flex-1">
             <div className="info-card">
                 <p className="info-card--header">Requests</p>
-                <h1 className="info-card--content">{props.used} / {props.total}</h1>
+                <h1 className="info-card--content">{props.used.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} / {props.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
             </div>
             <style jsx>{`
               .info-card {             

@@ -8,16 +8,20 @@ import ConsoleHeader from "../components/ConsoleHeader";
 import InfoCard from "../components/InfoCard";
 
 const Console = (props) => {
-    const [token, setToken] = useState(null);
+    const [request, setRequest] = useState(null);
     const [apiKey, setApiKey] = useState("");
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     useEffect(() => {
         firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
-            setToken(snapshot.val());
             if (snapshot.val()) {
                 setApiKey(snapshot.val().airtableToken)
             }
+        })
+    }, []);
+    useEffect(() => {
+        firebase.database().ref(`requests/${props.user.uid}`).on('value', (snapshot) => {
+            setRequest(snapshot.val());
         })
     }, []);
     return (<div>
@@ -49,8 +53,8 @@ const Console = (props) => {
                             Enter your api key below to start using Flairtable. Everything works exactly like Airtable,
                             you'll only get a different base URL and API key.
                         </p>
-                        {token ?
-                            <div className="mt-10"><InfoCard total={'100.000'} used={token.requestCount}/></div> : null}
+                        {request ?
+                            <div className="mt-10"><InfoCard total={request.total ?? 100} used={request.count}/></div> : null}
                         <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
                             <div className="w-full">
                                 <label>
@@ -126,7 +130,6 @@ const submitHandler = (apiKey, setLoading, user) => (e) => {
     e.preventDefault();
     firebase.database().ref(`/tokens/${user.uid}`).set({
         airtableToken: apiKey,
-        requestCount: 0,
     }).then((function () {
         // Handle Errors here.
         setLoading(true);
