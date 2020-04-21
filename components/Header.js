@@ -21,8 +21,7 @@ const Header = (props) => {
                     </button>
                 </div>
                 <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
-                    <Link href={"#"}><a
-                        className="menu--item">Docs</a></Link>
+                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
                     <Link href={"#"}><a
                         className="menu--item">Pricing</a></Link>
                     <Link href={"/login"}><a
@@ -44,11 +43,8 @@ const Header = (props) => {
                             </div>
                         </a>
                     </Link>
-                    <Link href={"#"}>
-                        <a>
-                            <div className="hamburger-menu--item">Docs</div>
-                        </a>
-                    </Link>
+                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
+                       className="hamburger-menu--item">Docs</a>
                     <Link href={"#"}>
                         <a>
                             <div className="hamburger-menu--item">Pricing</div>
