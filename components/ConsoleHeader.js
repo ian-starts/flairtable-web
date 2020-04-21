@@ -23,8 +23,7 @@ const ConsoleHeader = (props) => {
                 <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
                     <Link href={"#"}><a
                         className="menu--item">Pricing</a></Link>
-                    <Link href={"#"}><a
-                        className="menu--item">Docs</a></Link>
+                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
                     <a className="menu--item menu--item-accent" onClick={props.onSignoutClick} href={'#'}>Sign Out</a>
                 </div>
             </div>
@@ -32,8 +31,8 @@ const ConsoleHeader = (props) => {
                 <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col z-10">
                     <a className="hamburger-menu--item hamburger-menu--item-accent" onClick={props.onSignoutClick}
                        href={'#'}>Sign Out</a>
-                    <Link href={"#"}><a
-                        className="hamburger-menu--item">Docs</a></Link>
+                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
+                       className="hamburger-menu--item">Docs</a>
                     <Link href={"#"}><a
                         className="hamburger-menu--item">Pricing</a></Link>
                 </div>
