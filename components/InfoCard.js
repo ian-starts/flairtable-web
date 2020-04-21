@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const InfoCard = (props) => {
     return (
-        <div className="flex flex-1">
+        <div className="flex">
             <div className="info-card">
                 <p className="info-card--header">Requests</p>
                 <h1 className="info-card--content">{props.used.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} / {props.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>

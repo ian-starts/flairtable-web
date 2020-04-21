@@ -12,6 +12,7 @@ const Console = (props) => {
     const [apiKey, setApiKey] = useState("");
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [copiedBase, setCopiedBase] = useState(false);
     useEffect(() => {
         firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
@@ -43,8 +44,25 @@ const Console = (props) => {
                                    value={props.user.uid}
                                    className="form--input"/>
                             <button id="copy" type="button" className="form--submit"
-                                    onClick={copyToClipboard(props.user.uid, setCopied)}>Copy to clipboard<span
+                                    onClick={copyToClipboard(props.user.uid, setCopied)}>Copy<span
                                 className={copied ? "done loading" : "done"}
+                                aria-hidden="true">Copied</span>
+                            </button>
+
+                        </div>
+                        <div className="my-10">
+                            <label className="w-full">
+                                <p className="input-label">Base URL</p>
+                            </label>
+
+                            <input type="text" name="airtable"
+                                   id="apiKeyInput"
+                                   disabled
+                                   value={"https://flairtable.com/api/v1"}
+                                   className="form--input"/>
+                            <button id="copy" type="button" className="form--submit"
+                                    onClick={copyToClipboard("https://flairtable.com/api/v1", setCopiedBase)}>Copy<span
+                                className={copiedBase ? "done loading" : "done"}
                                 aria-hidden="true">Copied</span>
                             </button>
 
@@ -54,7 +72,12 @@ const Console = (props) => {
                             you'll only get a different base URL and API key.
                         </p>
                         {request ?
-                            <div className="mt-10"><InfoCard total={request.total ?? 100} used={request.count}/></div> : null}
+                            <div className="mt-10 flex flex-row flex-wrap">
+                                <InfoCard total={request.total ?? 100} used={request.count}/>
+                                <a className="form--submit-checkout"
+                                   href={`https://gumroad.com/l/flairtable?uid=${props.user.uid}`} target="_blank"
+                                   rel="noopener">Add 100k requests for $12</a>
+                            </div> : null}
                         <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
                             <div className="w-full">
                                 <label>
@@ -72,6 +95,10 @@ const Console = (props) => {
                 </div>
             </Layout>
             <style jsx>{`
+                .form--submit-checkout{
+                  @apply bg-custom-red-800 text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-center relative;
+                  transition: all .3s ease-out,-webkit-transform .3s ease-out;
+                }
                 .done {
                   position: absolute;
                   left: 0; top: 0; right: 0;
@@ -86,7 +113,7 @@ const Console = (props) => {
                   transform: translateY(-2em);
                 }
                 .console-container {
-                  @apply flex flex-1 justify-center items-center flex-col;
+                  @apply flex flex-1 justify-center items-center flex-col mb-20;
                 }
                 .console--content {
                   @apply text-gray-700 text-lg my-2
@@ -110,11 +137,18 @@ const Console = (props) => {
                 @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-end relative;
                 transition: transform .3s ease-out,-webkit-transform .3s ease-out;
               }
+              .form--submit-checkout:hover {
+                @apply bg-custom-red;
+                transform: scale(1.05);
+              }
               @screen sm {
                 .form{
                   @apply justify-start self-start content-start
                 }
                 .form--submit{
+                  @apply ml-5 mt-0; 
+                }
+                .form--submit-checkout{
                   @apply ml-5 mt-0; 
                 }
               }
