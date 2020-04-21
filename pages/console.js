@@ -88,7 +88,7 @@ const Console = (props) => {
                                        onChange={(e) => setApiKey(e.target.value)} className="form--input"/>
                                 <button className="form--submit" type="submit">Submit<span
                                     className={loading ? "done loading" : "done"}
-                                    aria-hidden="true">Updated!</span></button>
+                                    aria-hidden="true">Updated</span></button>
                             </div>
                         </form>
                     </div>
