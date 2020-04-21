@@ -15,6 +15,6 @@ export default (Component) => {
                 }
             });
         },[]);
-        return loading ? <div/> : <Component {...props}/>
+        return <Component {...props}/>
     };
 }

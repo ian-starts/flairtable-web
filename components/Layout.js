@@ -29,7 +29,7 @@ export default (props) => {
                 <meta property="twitter:title" content={props.title}/>
                 <meta property="twitter:description"
                       content={"Flairtable | Securely use your Airtable API keys anywhere"}/>
-                <meta property="og:image" content="https://flairtable.com/assets/images/metatag.jpg"/>
+                <meta property="twitter:image" content="https://flairtable.com/assets/images/metatag.jpg"/>
             </Head>
             {props.children}
         </div>

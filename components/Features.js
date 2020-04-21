@@ -16,7 +16,7 @@ const Features = (props) => {
                 </div>
                 <div className="feature--video my-2 mx-4">
                     <div className="max-w-38 min-w-18">
-                        <video muted="muted" autoplay="autoplay" loop="loop">
+                        <video muted="muted" autoPlay="autoplay" loop="loop">
                             <source src="/assets/videos/flairtable.mp4" type="video/mp4"/>
                         </video>
                     </div>
