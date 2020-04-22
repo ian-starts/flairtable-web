@@ -17,7 +17,7 @@ const Pricing = (props) => {
                                target="_blank"
                                rel="noopener">{props.user ? "Buy $12" : "Sign Up"}</a>
                         </div>
-                        <div className="flex flex-1 justify-end mx-10 mb-5">
+                        <div className="flex flex-1 justify-end ml-2 mb-5">
                             <ul className="feature-list">
                                 <li className={"feature-list--item"}>
                                     <h4 className="list-item--header">ALWAYS FREE</h4>
@@ -67,13 +67,15 @@ const Pricing = (props) => {
                 @apply text-2xl text-gray-900 py-2 font-bold leading-tight text-left
               }
               .pricing-card{
-                @apply bg-custom-orange-500 py-8 rounded-lg px-16
+                @apply bg-custom-orange-500 py-8 rounded-lg px-4
               }
               .pricing-card--header{
                 @apply text-3xl text-gray-800 px-10
               }
               @screen sm {
-                
+                  .pricing-card{
+                      @apply py-8 px-16
+                   }
               }
               @screen md {
                 .pricing-header{
