@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Hero from '../components/Hero';
-import WithoutProfile from "../hocs/WithoutProfile";
 import Features from "../components/Features";
 import Pricing from "../components/Pricing";
 import firebase from "firebase";
