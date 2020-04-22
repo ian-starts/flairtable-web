@@ -6,7 +6,7 @@ const Pricing = (props) => {
     return (
         <div className="text-center mb-10">
             <h1 className="pricing-header">
-                Start using an easy, secure and simple <br/>database experience
+                Start using an easy, secure and simple <br/>database experience.
             </h1>
             <div className="flex justify-center my-10">
                 <div className="pricing-card">

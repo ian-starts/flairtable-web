@@ -14,7 +14,7 @@ export default (Component) => {
                     setLoading(false);
                 }
             });
-        },[]);
-        return loading ? <div/> : <Component {...props}/>
+        }, []);
+        return loading ? <div className="hidden"><Component {...props}/></div> : <Component {...props}/>
     };
 }
