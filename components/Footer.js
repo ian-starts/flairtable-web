@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = (props) => {
     return (
-        <div className="py-2">
+        <div className="py-2 my-10">
             <div className="footer">
                 <div className="footer--items">
                     <a className="footer--item" href="mailto:hello@iankok.com">Contact</a>

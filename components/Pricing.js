@@ -4,32 +4,41 @@ import InfoCard from "./InfoCard";
 
 const Pricing = (props) => {
     return (
-        <div className="text-center mb-10">
-            <h1 className="pricing-header">
-                Start using an easy, secure and simple <br/>database experience.
-            </h1>
+        <div className="text-center mb-20">
             <div className="flex justify-center my-10">
                 <div className="pricing-card">
-                    <h2 className="pricing-card--header">$12</h2>
-                    <ul className="feature-list">
-                        <li className={"feature-list--item"}>
-                            <h4 className="list-item--header">ALWAYS FREE</h4>
-                            <p className="list-item--content">500 Requests</p>
-                        </li>
-                        <li className={"feature-list--item"}>
-                            <h4 className="list-item--header">REQUESTS</h4>
-                            <p className="list-item--content">100K</p>
-                        </li>
-                        <li className={"feature-list--item"}>
-                            <h4 className="list-item--header">VALIDITY</h4>
-                            <p className="list-item--content">1 Year</p>
-                        </li>
-                    </ul>
-                    <div className="my-3 flex justify-center">
-                        <a className="buy-button"
-                           href={props.user ? `https://gumroad.com/l/flairtable?uid=${props.user.uid}` : '/signup'}
-                           target="_blank"
-                           rel="noopener">{props.user ? "Buy Now": "Sign Up"}</a>
+                    <h1 className="pricing-header">
+                        Start using an easy, secure and simple <br/>database experience.
+                    </h1>
+                    <div className="flex flex-row">
+                        <div className="my-3 flex justify-center">
+                            <a className="buy-button"
+                               href={props.user ? `https://gumroad.com/l/flairtable?uid=${props.user.uid}` : '/signup'}
+                               target="_blank"
+                               rel="noopener">{props.user ? "Buy $12" : "Sign Up"}</a>
+                        </div>
+                        <div className="flex flex-1 justify-end mx-10 mb-5">
+                            <ul className="feature-list">
+                                <li className={"feature-list--item"}>
+                                    <h4 className="list-item--header">ALWAYS FREE</h4>
+                                    <p className="list-item--content">500 Requests</p>
+                                </li>
+                                <li className={"feature-list--item"}>
+                                    <h4 className="list-item--header">REQUESTS</h4>
+                                    <p className="list-item--content">100K</p>
+                                </li>
+                            </ul>
+                            <ul className="feature-list">
+                                <li className={"feature-list--item"}>
+                                    <h4 className="list-item--header">VALIDITY</h4>
+                                    <p className="list-item--content">1 Year</p>
+                                </li>
+                                <li className={"feature-list--item"}>
+                                    <h4 className="list-item--header">COSTS</h4>
+                                    <p className="list-item--content">$12</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,16 +58,16 @@ const Pricing = (props) => {
                 @apply leading-none font-medium text-gray-900
               }
               .feature-list{
-                @apply leading-none text-left py-2;
+                @apply leading-none text-left flex flex-col mx-3;
               }
               .feature-list--item{
                 @apply py-2
               } 
               .pricing-header {
-                @apply text-2xl text-gray-700 px-10 font-bold leading-tight
+                @apply text-2xl text-gray-900 py-2 font-bold leading-tight text-left
               }
               .pricing-card{
-                @apply bg-custom-orange-500 py-3 rounded px-10
+                @apply bg-custom-orange-500 py-8 rounded-lg px-16
               }
               .pricing-card--header{
                 @apply text-3xl text-gray-800 px-10
