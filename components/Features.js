@@ -14,7 +14,7 @@ const Features = (props) => {
                         control over your base, and worst case: over your Airtable account. Flairtable fixes that.
                     </p>
                 </div>
-                <div className="feature--video my-2 mx-4">
+                <div className="feature--video my-2 mx-4 shadow-lg">
                     <div className="max-w-38 min-w-18">
                         <video muted="muted" autoPlay="autoplay" loop="loop">
                             <source src="/assets/videos/flairtable.mp4" type="video/mp4"/>

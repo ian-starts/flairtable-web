@@ -19,7 +19,7 @@ const Hero = (props) => {
                   @apply flex flex-1 flex-col max-w-2xl mt-20;
               }
               .hero--header{
-                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2;
+                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2 leading-tight;
               }
               .hero--header-accent{
                 @apply text-custom-orange

@@ -6,7 +6,7 @@ const Header = (props) => {
     return (
         <div>
             <div className="header">
-                <Link href={'#'}>
+                <Link href={'/'}>
                     <a className="flex flex-1">
                         <div
                             className="header--logo">
@@ -22,7 +22,7 @@ const Header = (props) => {
                 </div>
                 <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
                     <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
-                    <Link href={"#"}><a
+                    <Link href={"#pricing"}><a
                         className="menu--item">Pricing</a></Link>
                     <Link href={"/login"}><a
                         className="menu--item">Sign In</a></Link>
@@ -45,7 +45,7 @@ const Header = (props) => {
                     </Link>
                     <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
                        className="hamburger-menu--item">Docs</a>
-                    <Link href={"#"}>
+                    <Link href={"#pricing"}>
                         <a>
                             <div className="hamburger-menu--item">Pricing</div>
                         </a>
