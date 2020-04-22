@@ -27,7 +27,7 @@ const Pricing = (props) => {
                     </ul>
                     <div className="my-3 flex justify-center">
                         <a className="buy-button"
-                           href={props.user ? `https://gumroad.com/l/flairtable?uid=${props.user.uid}` : '/login'}
+                           href={props.user ? `https://gumroad.com/l/flairtable?uid=${props.user.uid}` : '/signup'}
                            target="_blank"
                            rel="noopener">{props.user ? "Buy Now": "Sign Up"}</a>
                     </div>
