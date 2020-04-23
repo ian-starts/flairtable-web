@@ -14,9 +14,20 @@ const Pricing = (props) => {
                     <div className="flex flex-row">
                         <div className="my-3 flex justify-center flex-row flex-wrap-reverse">
                             <a className="buy-button"
-                               href={props.user ? (recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`) : '/signup'}
+                               href={(() => {
+                                   if (props.user) {
+                                       if (recurringChecked) {
+                                           return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
+                                       }
+                                       return `https://gumroad.com/l/flairtable?uid=${props.user.uid}`
+                                   }
+                                   if (recurringChecked) {
+                                       return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
+                                   }
+                                   return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable?uid=')}`
+                               })()}
                                target="_blank"
-                               rel="noopener">{props.user ? "Buy $12" : "Sign Up"}</a>
+                               rel="noopener">Buy $12</a>
                             <label className="reserve-card">
                                 <input type="checkbox" className={"reserve-card__checkbox__hidden"}
                                        value={recurringChecked}

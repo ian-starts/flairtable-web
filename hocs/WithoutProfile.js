@@ -9,6 +9,12 @@ export default (Component) => {
         useEffect(() => {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirect = urlParams.get('redirect')
+                    if (redirect){
+                        window.location.href = redirect + user.uid;
+                        return;
+                    }
                     router.replace('/console');
                 } else {
                     setLoading(false);

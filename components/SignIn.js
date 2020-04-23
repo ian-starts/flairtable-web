@@ -11,16 +11,6 @@ export default (props) => {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                router.push('/');
-            } else {
-                // No user is signed in.
-            }
-        });
-    }, []);
-
-    useEffect(() => {
         setEmail(props.email ?? "");
     }, [props.email]);
 
