@@ -13,6 +13,7 @@ const Console = (props) => {
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     const [copiedBase, setCopiedBase] = useState(false);
+    const [recurringChecked, setRecurringChecked] = useState(false);
     useEffect(() => {
         firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
@@ -74,9 +75,20 @@ const Console = (props) => {
                         {request ?
                             <div className="mt-10 flex flex-row flex-wrap">
                                 <InfoCard total={request.total ?? 100} used={request.count}/>
-                                <a className="form--submit-checkout"
-                                   href={`https://gumroad.com/l/flairtable?uid=${props.user.uid}`} target="_blank"
-                                   rel="noopener">Add 100k requests for $12</a>
+                                <div className="flex justify-start flex-col sm:ml-2">
+                                    <label className="reserve-card">
+                                        <input type="checkbox" className={"reserve-card__checkbox__hidden"}
+                                               value={recurringChecked}
+                                               onChange={(e) => setRecurringChecked(recurringChecked === false)}/>
+                                        <span
+                                            className={recurringChecked ? "reserve-card__checkbox__checked" : "reserve-card__checkbox"}/>
+                                        <span className="whitespace-no-wrap">Yearly Recurring</span>
+                                    </label>
+                                    <a className="form--submit-checkout"
+                                       href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
+                                       target="_blank"
+                                       rel="noopener">Add 100k</a>
+                                </div>
                             </div> : null}
                         <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
                             <div className="w-full">
@@ -95,64 +107,89 @@ const Console = (props) => {
                 </div>
             </Layout>
             <style jsx>{`
-                .form--submit-checkout{
-                  @apply bg-custom-red-800 text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-center relative;
-                  transition: all .3s ease-out,-webkit-transform .3s ease-out;
-                }
-                .done {
-                  position: absolute;
-                  left: 0; top: 0; right: 0;
-                  text-align: center;
-                  opacity: 0;
-                  transform: translateY(-1em);
-                  color: #000;
-                  transition: all .500s;
-                }
-                .loading {
-                  opacity: 1;
-                  transform: translateY(-2em);
-                }
-                .console-container {
-                  @apply flex flex-1 justify-center items-center flex-col mb-20;
-                }
-                .console--content {
-                  @apply text-gray-700 text-lg my-2
-                }
-                .console-inner-container{
-                  @apply max-w-2xl justify-start p-3
-                }
-                .console--header {
-                  @apply text-gray-700 text-2xl my-2;
-                }
-                .form {
-                @apply mt-12 w-full flex flex-row;
-              }
-              .form--input{
-                @apply px-3 py-3 bg-gray-300 rounded w-full font-sans max-w-sm;
-              }
-              .input-label{
-                @apply text-gray-700 text-lg font-sans w-full
-              }
-              .form--submit {
-                @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-end relative;
-                transition: transform .3s ease-out,-webkit-transform .3s ease-out;
-              }
-              .form--submit-checkout:hover {
-                @apply bg-custom-red;
-                transform: scale(1.05);
-              }
-              @screen sm {
-                .form{
-                  @apply justify-start self-start content-start
-                }
-                .form--submit{
-                  @apply ml-5 mt-0; 
-                }
-                .form--submit-checkout{
-                  @apply ml-5 mt-0; 
-                }
-              }
-             `}</style>
+           .reserve-card {
+           @apply text-white flex flex-row px-2 py-3 rounded-lg self-center;
+           @apply items-center my-2 font-sans bg-custom-blue font-bold;
+           transition: all .3s ease,-webkit-all .3s ease
+           }
+           .reserve-card__checkbox__hidden {
+           @apply absolute opacity-0
+           }
+           .reserve-card__checkbox{
+           @apply h-4 w-4 border-white border mr-1 rounded-full;
+           transition: all .3s ease,-webkit-all .3s ease
+           }
+           .reserve-card__checkbox__checked{
+           @apply h-4 w-4 border-white border mr-1 rounded-full bg-white;
+           transition: all .3s ease,-webkit-all .3s ease
+           }
+           .form--submit-checkout{
+           @apply bg-custom-red-800 text-white font-bold font-sans whitespace-no-wrap p-3 rounded-lg flex;
+           transition: all .3s ease-out,-webkit-transform .3s ease-out;
+           }
+           .done {
+           position: absolute;
+           left: 0; top: 0; right: 0;
+           text-align: center;
+           opacity: 0;
+           transform: translateY(-1em);
+           color: #000;
+           transition: all .500s;
+           }
+           .loading {
+           opacity: 1;
+           transform: translateY(-2em);
+           }
+           .console-container {
+           @apply flex flex-1 justify-center items-center flex-col mb-20;
+           }
+           .console--content {
+           @apply text-gray-700 text-lg my-2
+           }
+           .console-inner-container{
+           @apply max-w-2xl justify-start p-3
+           }
+           .console--header {
+           @apply text-gray-700 text-2xl my-2;
+           }
+           .form {
+           @apply mt-12 w-full flex flex-row;
+           }
+           .form--input{
+           @apply px-3 py-3 bg-gray-300 rounded w-full font-sans max-w-sm;
+           }
+           .input-label{
+           @apply text-gray-700 text-lg font-sans w-full
+           }
+           .form--submit {
+           @apply bg-custom-blue text-white font-bold font-sans whitespace-no-wrap p-3 mt-4 rounded-lg self-end relative;
+           transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+           }
+           .form--submit-checkout:hover {
+           @apply bg-custom-red;
+           transform: scale(1.05);
+           }
+           @screen sm {
+           .form{
+           @apply justify-start self-start content-start
+           }
+           .form--submit{
+           @apply ml-5 mt-0;
+           }
+           .form--submit-checkout{
+           @apply mt-0;
+           }
+           .reserve-card__checkbox{
+           @apply mr-3;
+           }
+           .reserve-card__checkbox__checked{
+           @apply mr-3;
+           }
+           .buy-button{
+           @apply mr-5
+           }
+           }
+           `}</style>
         </div>
     )
 };
