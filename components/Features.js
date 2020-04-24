@@ -28,13 +28,14 @@ const Features = (props) => {
                   @apply flex flex-1 flex-row mt-20 max-w-5xl mb-20 flex-wrap mx-5;
               }
               .feature--header{
-                  @apply font-sans text-lg font-bold text-gray-700 text-center mt-10 px-2;
+                  @apply font-sans text-xl font-bold text-gray-800 text-center mt-10 px-2;
               }
               .feature--video{
                   @apply flex flex-1 justify-center self-center
               }
               .feature--description {
                 @apply text-gray-700 px-2 py-1 mt-2 text-center font-sans;
+                line-height: 1.7;
               }
               @screen sm {
                  

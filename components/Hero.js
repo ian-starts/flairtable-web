@@ -16,10 +16,10 @@ const Hero = (props) => {
             </div>
             <style jsx>{`
               .hero {
-                  @apply flex flex-1 flex-col max-w-2xl mt-20;
+                  @apply flex flex-1 flex-col max-w-2xl mt-32 mb-16;
               }
               .hero--header{
-                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2 leading-tight;
+                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2 leading-none;
               }
               .hero--header-accent{
                 @apply text-custom-orange
@@ -47,7 +47,13 @@ const Hero = (props) => {
                 .hero--header{
                   @apply text-4xl mt-10;
                 }
-              }
+                .form--input{
+                  @apply px-5 py-4 flex-1 flex;
+                }
+                .form--submit {
+                  @apply px-10 py-4;
+                  }
+                }
               @screen md {
                 
               }

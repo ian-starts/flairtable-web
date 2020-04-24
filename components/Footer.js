@@ -19,7 +19,7 @@ const Footer = (props) => {
                     @apply flex flex-1 justify-center
                   }
                   .footer--item{
-                    @apply text-gray-600 mx-5 font-sans font-hairline
+                    @apply text-gray-500 mx-5 font-bold font-sans
                   }
                   @screen md {
                        

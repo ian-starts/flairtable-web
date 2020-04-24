@@ -37,7 +37,7 @@ const Pricing = (props) => {
                                 <span className="whitespace-no-wrap">Yearly Recurring</span>
                             </label>
                         </div>
-                        <div className="flex flex-1 justify-end ml-2 mb-5">
+                        <div className="flex flex-1 justify-end sm:ml-2 mb-5 sm:pr-3 mt-3 sm:mt-0">
                             <ul className="feature-list">
                                 <li className={"feature-list--item"}>
                                     <h4 className="list-item--header">ALWAYS FREE</h4>
@@ -88,47 +88,56 @@ const Pricing = (props) => {
                 transform: scale(1.05);
               }
               .list-item--header{
-                @apply leading-none font-light text-gray-900 text-xs whitespace-no-wrap
+                @apply leading-tight font-bold text-gray-900 text-xs whitespace-no-wrap
               }
               .list-item--content{
                 @apply leading-none font-medium text-gray-900 text-xs
               }
               .feature-list{
-                @apply leading-none text-left flex flex-col mx-3;
+                @apply leading-none text-left flex flex-col mx-2;
               }
               .feature-list--item{
-                @apply py-2
+                @apply pb-4
               } 
               .pricing-header {
-                @apply text-2xl text-gray-900 py-2 font-bold leading-tight text-left
+                @apply text-2xl pt-2 font-bold leading-tight text-left;
+                color: rgb(80,67,35);
               }
               .pricing-card{
-                @apply bg-custom-orange-500 py-8 rounded-lg pl-2
+                @apply bg-custom-orange-500 py-6 rounded-lg pl-2
               }
               .pricing-card--header{
                 @apply text-3xl text-gray-800 px-10
               }
+              .reserve-card:hover{
+                @apply cursor-pointer;
+                transform: scale(1.05);
+              }   
+              
               @screen sm {
+                  .feature-list{
+                    @apply mx-4
+                  }
                   .pricing-card{
-                      @apply py-8 px-16
+                      @apply  px-16
                    }
                    .list-item--content{
                       @apply text-sm
                    }
                    .list-item--header{
-                    @apply text-sm
+                    @apply text-sm leading-normal
                    }
                    .reserve-card__checkbox{
                       @apply mr-3;
                     }
                     .reserve-card{
-                      @apply text-base;
+                      @apply text-base px-8 py-4;
                     }
                      .reserve-card__checkbox__checked{
                       @apply mr-3;
                     }
                     .buy-button{
-                      @apply mr-5
+                      @apply mr-5 px-8 py-4
                     }
               }
               @screen md {

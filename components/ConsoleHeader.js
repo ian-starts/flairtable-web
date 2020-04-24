@@ -50,7 +50,7 @@ const ConsoleHeader = (props) => {
                 @apply bg-blue-700
                 }
                 .header--banner{
-                @apply text-gray-800 py-5 self-center font-sans text-xl
+                @apply text-gray-700 py-5 font-bold self-center font-sans text-xl
                 }
                 .header--logo{
                 @apply ml-3 self-center mr-1 py-2 flex w-16 h-16;
@@ -65,7 +65,7 @@ const ConsoleHeader = (props) => {
                 @apply self-center text-gray-100 font-sans font-hairline text-lg
                 }
                 .menu--item{
-                  @apply text-gray-600 mx-1 font-sans transition duration-200 ease-in-out whitespace-no-wrap;
+                  @apply text-gray-600 mx-1 font-bold font-sans transition duration-200 ease-in-out whitespace-no-wrap;
                 }
                 .menu--item-accent{
                   @apply text-blue-500 transition duration-200 ease-in-out;
