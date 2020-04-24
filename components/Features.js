@@ -15,9 +15,10 @@ const Features = (props) => {
                     </p>
                 </div>
                 <div className="feature--video my-2 mx-4 shadow-lg">
-                    <div className="max-w-38 min-w-18">
-                        <video muted="muted" autoPlay="autoplay" loop="loop">
-                            <source src="/assets/videos/flairtable.mp4" type="video/mp4"/>
+                    <div>
+                        <video muted={true} autoPlay={true}
+                               preload={"metadata"} loop="loop">
+                            <source src="https://f002.backblazeb2.com/file/Flairtable-videos/flairtable.mp4" type="video/mp4"/>
                         </video>
                     </div>
                 </div>
