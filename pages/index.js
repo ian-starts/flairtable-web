@@ -10,6 +10,11 @@ import Footer from "../components/Footer";
 
 const Home = (props) => {
     const [user, setUser] = useState(null);
+    const [ref, setRef] = useState("");
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        setRef(urlParams.get('ref'));
+    }, []);
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -25,7 +30,7 @@ const Home = (props) => {
                 <Hero/>
                 <Features/>
                 <section id={"pricing"}/>
-                <Pricing user={user}/>
+                <Pricing discount={ref} user={user}/>
                 <Footer/>
             </Layout>
             <style jsx>{`
