@@ -1,15 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Link from "next/link";
 import InfoCard from "./InfoCard";
 
 const Pricing = (props) => {
     const [recurringChecked, setRecurringChecked] = useState(false);
-    const [discount, setDiscount] = useState(props.discount ?? "");
-
-    useEffect(() => {
-        setDiscount(props.discount ?? "");
-    }, [props.discount]);
-
     return (
         <div className="text-center mb-20">
             <div className="flex justify-center my-10">
@@ -23,29 +17,17 @@ const Pricing = (props) => {
                                href={(() => {
                                    if (props.user) {
                                        if (recurringChecked) {
-                                           if (discount){
-                                               return `https://gumroad.com/l/flairtable-recurring/producthunt?uid=${props.user.uid}`;
-                                           }
                                            return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
-                                       }
-                                       if (discount){
-                                           return `https://gumroad.com/l/flairtable/producthunt?uid=${props.user.uid}`;
                                        }
                                        return `https://gumroad.com/l/flairtable?uid=${props.user.uid}`
                                    }
                                    if (recurringChecked) {
-                                       if (discount){
-                                           return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring/producthunt?uid=')}`
-                                       }
                                        return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
                                    }
-                                   if (discount){
-                                       return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring/producthunt?uid=')}`
-                                   }
-                                   return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable/producthunt?uid=')}`
+                                   return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable?uid=')}`
                                })()}
                                target="_blank"
-                               rel="noopener">Buy {discount ? <span className="relative">$12<span className="absolute w-full border-t-2 border-red-900 left-0" style={{top: '50%'}}/></span>: null} {discount? '$8': '$12'}</a>
+                               rel="noopener">Buy $12</a>
                             <label className="reserve-card">
                                 <input type="checkbox" className={"reserve-card__checkbox__hidden"}
                                        value={recurringChecked}

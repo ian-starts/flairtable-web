@@ -10,11 +10,6 @@ import Footer from "../components/Footer";
 
 const Home = (props) => {
     const [user, setUser] = useState(null);
-    const [ref, setRef] = useState("");
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        setRef(urlParams.get('ref'));
-    }, []);
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -28,17 +23,9 @@ const Home = (props) => {
             <Layout locale={props.locale} title="Flairtable - Airtable for your frontend">
                 {user ? <ConsoleHeader onSignoutClick={onSignoutClick} withConsole={true}/> : <Header/>}
                 <Hero/>
-                <div className="fixed right-0 bottom-0 mr-6 mb-6 hidden sm:block">
-                    <a href="https://www.producthunt.com/posts/flairtable?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-flairtable"
-                       target="_blank"><img
-                        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=196559&theme=light"
-                        alt="Flairtable - Frontend safe Airtable. Secure and scope your API key. | Product Hunt Embed"
-                        style={{width: '250px', height: '54px'}} width="250px" height="54px"/></a>
-                </div>
-
                 <Features/>
                 <section id={"pricing"}/>
-                <Pricing discount={ref} user={user}/>
+                <Pricing user={user}/>
                 <Footer/>
             </Layout>
             <style jsx>{`

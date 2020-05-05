@@ -85,7 +85,7 @@ const Console = (props) => {
                                         <span className="whitespace-no-wrap">Yearly Recurring</span>
                                     </label>
                                     <a className="form--submit-checkout"
-                                       href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring/producthunt?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable/producthunt?uid=${props.user.uid}`}
+                                       href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
                                        target="_blank"
                                        rel="noopener">Add 100k</a>
                                 </div>
