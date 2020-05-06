@@ -3,7 +3,7 @@ import Link from "next/link";
 import InfoCard from "./InfoCard";
 
 const Pricing = (props) => {
-    const [recurringChecked, setRecurringChecked] = useState(false);
+    const [recurringChecked, setRecurringChecked] = useState(true);
     return (
         <div className="text-center mb-20">
             <div className="flex justify-center my-10">
@@ -12,7 +12,7 @@ const Pricing = (props) => {
                         Start using an easy, secure and simple <br/>database experience.
                     </h1>
                     <div className="flex flex-row">
-                        <div className="my-3 flex justify-center flex-row flex-wrap-reverse">
+                        <div className="my-3 flex justify-center items-center flex-row items-start flex-wrap-reverse">
                             <a className="buy-button"
                                href={(() => {
                                    if (props.user) {
@@ -27,15 +27,24 @@ const Pricing = (props) => {
                                    return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable?uid=')}`
                                })()}
                                target="_blank"
-                               rel="noopener">Buy $12</a>
-                            <label className="reserve-card">
-                                <input type="checkbox" className={"reserve-card__checkbox__hidden"}
-                                       value={recurringChecked}
-                                       onChange={(e) => setRecurringChecked(recurringChecked === false)}/>
-                                <span
-                                    className={recurringChecked ? "reserve-card__checkbox__checked" : "reserve-card__checkbox"}/>
-                                <span className="whitespace-no-wrap">Yearly Recurring</span>
-                            </label>
+                               rel="noopener">{`Buy $12${recurringChecked ? '/yr' : ''}`}</a>
+                            <div>
+                                <label className="reserve-card">
+                                    <input type="radio" className={"reserve-card__checkbox"}
+                                           checked={recurringChecked}
+                                           name="payment-type"
+                                           onChange={(e) => setRecurringChecked(true)}/>
+                                    <span className="whitespace-no-wrap">Yearly recurring</span>
+                                </label>
+                                <label className="reserve-card">
+                                    <input type="radio" className={"reserve-card__checkbox"}
+                                           checked={!recurringChecked}
+                                           name="payment-type"
+                                           onChange={(e) => setRecurringChecked(false)}/>
+                                    <span className="whitespace-no-wrap">One time payment</span>
+                                </label>
+                            </div>
+
                         </div>
                         <div className="flex flex-1 justify-end sm:ml-2 mb-5 sm:pr-3 mt-3 sm:mt-0">
                             <ul className="feature-list">
@@ -64,20 +73,12 @@ const Pricing = (props) => {
             </div>
             <style jsx>{`
               .reserve-card {
-                    @apply text-xs text-white flex flex-row px-2 py-3 rounded-lg self-center; 
-                    @apply items-center my-2 font-sans bg-custom-blue font-bold;
-                    transition: all .3s ease,-webkit-all .3s ease
+                    @apply text-xs text-gray-900 flex flex-row pl-1; 
+                    @apply items-center my-2 font-sans font-bold;
+                    transition: all .3s ease,-webkit-all .3s ease;
                 }
               .reserve-card__checkbox__hidden {
-                  @apply absolute opacity-0
-                }
-                .reserve-card__checkbox{
-                  @apply h-4 w-4 border-white border mr-1 rounded-full;
-                  transition: all .3s ease,-webkit-all .3s ease
-                }
-                 .reserve-card__checkbox__checked{
-                  @apply h-4 w-4 border-white border mr-1 rounded-full bg-white;
-                  transition: all .3s ease,-webkit-all .3s ease
+                  @apply px-3
                 }
               .buy-button{
                   @apply bg-custom-red-800 text-white font-bold font-sans whitespace-no-wrap p-3 rounded-lg self-center relative mr-0;
@@ -131,7 +132,7 @@ const Pricing = (props) => {
                       @apply mr-3;
                     }
                     .reserve-card{
-                      @apply text-base px-8 py-4;
+                      @apply text-base;
                     }
                      .reserve-card__checkbox__checked{
                       @apply mr-3;

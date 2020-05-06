@@ -13,7 +13,7 @@ const Console = (props) => {
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     const [copiedBase, setCopiedBase] = useState(false);
-    const [recurringChecked, setRecurringChecked] = useState(false);
+    const [recurringChecked, setRecurringChecked] = useState(true);
     useEffect(() => {
         firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
@@ -38,7 +38,6 @@ const Console = (props) => {
                             <label className="w-full">
                                 <p className="input-label">Your Flairtable API key (use in requests)</p>
                             </label>
-
                             <input type="text" name="airtable"
                                    id="apiKeyInput"
                                    disabled
@@ -75,14 +74,20 @@ const Console = (props) => {
                         {request ?
                             <div className="mt-10 flex flex-row flex-wrap">
                                 <InfoCard total={request.total ?? 100} used={request.count}/>
-                                <div className="flex justify-start flex-col sm:ml-2">
+                                <div className="flex justify-start flex-col mt-6 sm:mt-0 sm:ml-2">
                                     <label className="reserve-card">
-                                        <input type="checkbox" className={"reserve-card__checkbox__hidden"}
-                                               value={recurringChecked}
-                                               onChange={(e) => setRecurringChecked(recurringChecked === false)}/>
-                                        <span
-                                            className={recurringChecked ? "reserve-card__checkbox__checked" : "reserve-card__checkbox"}/>
-                                        <span className="whitespace-no-wrap">Yearly Recurring</span>
+                                        <input type="radio" className={"reserve-card__checkbox"}
+                                               checked={recurringChecked}
+                                               name="payment-type"
+                                               onChange={(e) => setRecurringChecked(true)}/>
+                                        <span className="whitespace-no-wrap">Yearly recurring</span>
+                                    </label>
+                                    <label className="reserve-card">
+                                        <input type="radio" className={"reserve-card__checkbox"}
+                                               checked={!recurringChecked}
+                                               name="payment-type"
+                                               onChange={(e) => setRecurringChecked(false)}/>
+                                        <span className="whitespace-no-wrap">One time payment</span>
                                     </label>
                                     <a className="form--submit-checkout"
                                        href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
@@ -108,10 +113,10 @@ const Console = (props) => {
             </Layout>
             <style jsx>{`
            .reserve-card {
-           @apply text-white flex flex-row px-2 py-3 rounded-lg self-center;
-           @apply items-center my-2 font-sans bg-custom-blue font-bold;
-           transition: all .3s ease,-webkit-all .3s ease
-           }
+                @apply text-sm text-gray-900 flex flex-row pl-1; 
+                @apply items-center my-2 font-sans font-bold;
+                transition: all .3s ease,-webkit-all .3s ease;
+            }
            .reserve-card__checkbox__hidden {
            @apply absolute opacity-0
            }
