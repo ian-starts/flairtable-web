@@ -2,45 +2,16 @@ import React, {useState} from 'react';
 import Link from "next/link";
 
 const ConsoleHeader = (props) => {
-    const [menu, setMenu] = useState(false);
     return (
         <div>
             <div className="header">
-                <Link href={'/console'}>
-                    <a className="flex flex-1">
-                        <div
-                            className="header--logo">
-                            <img alt="logo" src="/assets/images/logo-flairtable.svg"/>
-                        </div>
-                        <h1 className="header--banner">Flairtable</h1>
-                    </a>
-                </Link>
-                <div className="flex flex-1 flex-col items-end self-center py-2 px-4 sm:hidden">
-                    <button className="menu--item menu--item-accent" onClick={() => setMenu(!menu)}>
-                        <span>Menu</span>
-                    </button>
-                </div>
-                <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
-                    <Link href={"/#pricing"}><a
-                        className="menu--item">Pricing</a></Link>
+                <div className="flex flex-1 flex-row justify-end self-center pt-1 px-4">
                     <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
                     {props.withConsole ? <Link href={"/console"}><a
                         className="menu--item">Console</a></Link> : null}
                     <a className="menu--item menu--item-accent" onClick={props.onSignoutClick} href={'#'}>Sign Out</a>
                 </div>
             </div>
-            {menu ? <div className="relative">
-                <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col z-10">
-                    <a className="hamburger-menu--item hamburger-menu--item-accent" onClick={props.onSignoutClick}
-                       href={'#'}>Sign Out</a>
-                    {props.withConsole ? <Link href={"/console"}><a
-                        className="hamburger-menu--item">Console</a></Link> : null}
-                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
-                       className="hamburger-menu--item">Docs</a>
-                    <Link href={"/#pricing"}><a
-                        className="hamburger-menu--item">Pricing</a></Link>
-                </div>
-            </div> : null}
 
             <style jsx>{`
                 .hamburger-menu--item{
@@ -56,7 +27,7 @@ const ConsoleHeader = (props) => {
                 @apply ml-3 self-center mr-1 py-2 flex w-16 h-16;
                 }
                 .header{
-                @apply top-0 pr-3 bg-custom-white w-full flex flex-row px-5
+                  @apply top-0 bg-custom-white w-full flex flex-row
                 }
                 .menu--button-cta{
                 @apply flex rounded-full px-5 py-2 ml-2 bg-custom-pink;
@@ -77,9 +48,6 @@ const ConsoleHeader = (props) => {
                   @apply text-blue-700;
                 }
                 @screen sm {
-                .header{
-                @apply px-16
-                }
                 .header--logo{
                 @apply ml-10 mr-5
                 }
@@ -88,9 +56,6 @@ const ConsoleHeader = (props) => {
                 }
                 }
                 @screen md {
-                .header--logo{
-                @apply w-20
-                }
                 .header--banner{
                 @apply text-3xl
                 }

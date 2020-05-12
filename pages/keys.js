@@ -3,16 +3,13 @@ import Layout from "../components/Layout";
 import WithProfile from "../hocs/WithProfile";
 import firebase from "firebase";
 import ConsoleHeader from "../components/ConsoleHeader";
-import InfoCard from "../components/InfoCard";
 import Sidebar from "../components/Sidebar";
 
-const Console = (props) => {
-    const [request, setRequest] = useState(null);
+const Keys = (props) => {
     const [apiKey, setApiKey] = useState("");
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
     const [copiedBase, setCopiedBase] = useState(false);
-    const [recurringChecked, setRecurringChecked] = useState(true);
     useEffect(() => {
         firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
@@ -20,22 +17,17 @@ const Console = (props) => {
             }
         })
     }, []);
-    useEffect(() => {
-        firebase.database().ref(`requests/${props.user.uid}`).on('value', (snapshot) => {
-            setRequest(snapshot.val());
-        })
-    }, []);
     return (<div>
-            <Layout locale={props.locale} title="Flairtable - Console">
-                <Sidebar active={'overview'}/>
+            <Layout locale={props.locale} title="Flairtable - Console | Keys">
+                <Sidebar active={'keys'}/>
                 <main className="console">
                     <ConsoleHeader onSignoutClick={onSignoutClick}/>
                     <div className="console-container">
                         <div className="console-inner-container">
                             <h1 className="console--header">
-                                Overview
+                                Keys
                             </h1>
-                            <div className="my-10">
+                            <div className="my-5">
                                 <label className="w-full">
                                     <p className="input-label">Your Flairtable API key (use in requests)</p>
                                 </label>
@@ -73,30 +65,6 @@ const Console = (props) => {
                                 Airtable,
                                 you'll only get a different base URL and API key.
                             </p>
-                            {request ?
-                                <div className="mt-10 flex flex-row flex-wrap">
-                                    <InfoCard total={request.total ?? 100} used={request.count}/>
-                                    <div className="flex justify-start flex-col mt-6 sm:mt-0 sm:ml-2">
-                                        <label className="reserve-card">
-                                            <input type="radio" className={"reserve-card__checkbox"}
-                                                   checked={recurringChecked}
-                                                   name="payment-type"
-                                                   onChange={(e) => setRecurringChecked(true)}/>
-                                            <span className="whitespace-no-wrap">Yearly recurring</span>
-                                        </label>
-                                        <label className="reserve-card">
-                                            <input type="radio" className={"reserve-card__checkbox"}
-                                                   checked={!recurringChecked}
-                                                   name="payment-type"
-                                                   onChange={(e) => setRecurringChecked(false)}/>
-                                            <span className="whitespace-no-wrap">One time payment</span>
-                                        </label>
-                                        <a className="form--submit-checkout"
-                                           href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
-                                           target="_blank"
-                                           rel="noopener">Add 100k</a>
-                                    </div>
-                                </div> : null}
                             <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
                                 <div className="w-full">
                                     <label>
@@ -158,10 +126,10 @@ const Console = (props) => {
            @apply text-gray-700 text-lg my-2
            }
            .console-inner-container{
-           @apply max-w-2xl justify-start p-1 px-8
+           @apply max-w-2xl justify-start px-8
            }
            .console--header {
-           @apply text-gray-700 text-4xl my-2;
+            @apply text-gray-700 text-4xl my-2;
            }
            .form {
            @apply mt-12 w-full flex flex-row;
@@ -240,4 +208,4 @@ const copyToClipboard = (apiKey, setCopied) => (e) => {
         console.info('document.execCommand went wrong…')
     }
 }
-export default WithProfile(Console);
+export default WithProfile(Keys);
