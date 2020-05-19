@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import WithProfile from "../hocs/WithProfile";
-import firebase from "firebase";
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import ConsoleHeader from "../components/ConsoleHeader";
 import InfoCard from "../components/InfoCard";
 import Sidebar from "../components/Sidebar";

@@ -4,9 +4,11 @@ import Header from "../components/Header";
 import Hero from '../components/Hero';
 import Features from "../components/Features";
 import Pricing from "../components/Pricing";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/auth';
 import ConsoleHeader from "../components/ConsoleHeader";
 import Footer from "../components/Footer";
+import {Flairtable} from "flairtable";
 
 const Home = (props) => {
     const [user, setUser] = useState(null);
