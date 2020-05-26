@@ -8,7 +8,6 @@ import * as firebase from "firebase/app";
 import 'firebase/auth';
 import ConsoleHeader from "../components/ConsoleHeader";
 import Footer from "../components/Footer";
-import {Flairtable} from "flairtable";
 
 const Home = (props) => {
     const [user, setUser] = useState(null);
@@ -23,7 +22,7 @@ const Home = (props) => {
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Airtable for your frontend">
-                {user ? <ConsoleHeader onSignoutClick={onSignoutClick} withConsole={true}/> : <Header/>}
+                    <Header onSignoutClick={onSignoutClick} withConsole={true} signedIn={user}/>
                 <Hero/>
                 <Features/>
                 <section id={"pricing"}/>

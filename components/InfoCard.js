@@ -26,7 +26,7 @@ const InfoCard = (props) => {
                 @apply text-gray-600 italic;
               }
               .info-card--content {
-                @apply text-gray-800 text-3xl;
+                @apply text-gray-800 text-3xl truncate;
               }
             `}</style>
         </div>

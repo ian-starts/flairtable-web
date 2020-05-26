@@ -29,45 +29,47 @@ const Console = (props) => {
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Console">
-                <Sidebar active={'overview'}/>
-                <main className="console">
-                    <ConsoleHeader onSignoutClick={onSignoutClick}/>
-                    <div className="console-container">
-                        <div className="console-inner-container">
-                            <h1 className="console--header">
-                                Overview
-                            </h1>
-                            {request ?
-                                <div className="mt-10 flex flex-row flex-wrap">
-                                    <InfoCard total={request.total ?? 100} used={request.count}/>
-                                    <div className="flex justify-start flex-col mt-6 sm:mt-0 sm:ml-10">
-                                        <label className="reserve-card">
-                                            <input type="radio" className={"reserve-card__checkbox"}
-                                                   checked={recurringChecked}
-                                                   name="payment-type"
-                                                   onChange={(e) => setRecurringChecked(true)}/>
-                                            <span className="whitespace-no-wrap">Yearly recurring</span>
-                                        </label>
-                                        <label className="reserve-card">
-                                            <input type="radio" className={"reserve-card__checkbox"}
-                                                   checked={!recurringChecked}
-                                                   name="payment-type"
-                                                   onChange={(e) => setRecurringChecked(false)}/>
-                                            <span className="whitespace-no-wrap">One time payment</span>
-                                        </label>
-                                        <a className="form--submit-checkout"
-                                           href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
-                                           target="_blank"
-                                           rel="noopener">Add 100k</a>
-                                    </div>
-                                </div> : null}
+                <div className="flex flex-row">
+                    <Sidebar active={'overview'}/>
+                    <main className="console">
+                        <ConsoleHeader onSignoutClick={onSignoutClick}/>
+                        <div className="console-container">
+                            <div className="console-inner-container">
+                                <h1 className="console--header">
+                                    Overview
+                                </h1>
+                                {request ?
+                                    <div className="mt-10 flex flex-row flex-wrap">
+                                        <InfoCard total={request.total ?? 100} used={request.count}/>
+                                        <div className="flex justify-start flex-col mt-6 sm:mt-0 sm:ml-10">
+                                            <label className="reserve-card">
+                                                <input type="radio" className={"reserve-card__checkbox"}
+                                                       checked={recurringChecked}
+                                                       name="payment-type"
+                                                       onChange={(e) => setRecurringChecked(true)}/>
+                                                <span className="whitespace-no-wrap">Yearly recurring</span>
+                                            </label>
+                                            <label className="reserve-card">
+                                                <input type="radio" className={"reserve-card__checkbox"}
+                                                       checked={!recurringChecked}
+                                                       name="payment-type"
+                                                       onChange={(e) => setRecurringChecked(false)}/>
+                                                <span className="whitespace-no-wrap">One time payment</span>
+                                            </label>
+                                            <a className="form--submit-checkout"
+                                               href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
+                                               target="_blank"
+                                               rel="noopener">Add 100k</a>
+                                        </div>
+                                    </div> : null}
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </Layout>
             <style jsx>{`
           .console{
-            margin-left: 17rem; 
+            @apply overflow-y-auto w-full h-screen;
           }
            .reserve-card {
                 @apply text-sm text-gray-900 flex flex-row pl-1; 

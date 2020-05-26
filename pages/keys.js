@@ -21,72 +21,74 @@ const Keys = (props) => {
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Console | Keys">
-                <Sidebar active={'keys'}/>
-                <main className="console">
-                    <ConsoleHeader onSignoutClick={onSignoutClick}/>
-                    <div className="console-container">
-                        <div className="console-inner-container">
-                            <h1 className="console--header">
-                                Keys
-                            </h1>
-                            <div className="my-5">
-                                <label className="w-full">
-                                    <p className="input-label">Your Flairtable API key (use in requests)</p>
-                                </label>
-                                <input type="text" name="airtable"
-                                       id="apiKeyInput"
-                                       disabled
-                                       value={props.user.uid}
-                                       className="form--input"/>
-                                <button id="copy" type="button" className="form--submit"
-                                        onClick={copyToClipboard(props.user.uid, setCopied)}>Copy<span
-                                    className={copied ? "done loading" : "done"}
-                                    aria-hidden="true">Copied</span>
-                                </button>
-
-                            </div>
-                            <div className="my-10">
-                                <label className="w-full">
-                                    <p className="input-label">Base URL</p>
-                                </label>
-
-                                <input type="text" name="airtable"
-                                       id="apiKeyInput"
-                                       disabled
-                                       value={"https://flairtable.com/api/v1"}
-                                       className="form--input"/>
-                                <button id="copy" type="button" className="form--submit"
-                                        onClick={copyToClipboard("https://flairtable.com/api/v1", setCopiedBase)}>Copy<span
-                                    className={copiedBase ? "done loading" : "done"}
-                                    aria-hidden="true">Copied</span>
-                                </button>
-
-                            </div>
-                            <p className="console--content">
-                                Enter your api key below to start using Flairtable. Everything works exactly like
-                                Airtable,
-                                you'll only get a different base URL and API key.
-                            </p>
-                            <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
-                                <div className="w-full">
-                                    <label>
-                                        <p className="input-label">Your Airtable API key</p>
+                <div className="flex flex-row">
+                    <Sidebar active={'keys'}/>
+                    <main className="console">
+                        <ConsoleHeader onSignoutClick={onSignoutClick}/>
+                        <div className="console-container">
+                            <div className="console-inner-container">
+                                <h1 className="console--header">
+                                    Keys
+                                </h1>
+                                <div className="my-5">
+                                    <label className="w-full">
+                                        <p className="input-label">Your Flairtable API key (use in requests)</p>
                                     </label>
-                                    <input type="text" placeholder={"Enter your airtable API key"} name="airtable"
-                                           value={apiKey}
-                                           onChange={(e) => setApiKey(e.target.value)} className="form--input"/>
-                                    <button className="form--submit" type="submit">Submit<span
-                                        className={loading ? "done loading" : "done"}
-                                        aria-hidden="true">Updated</span></button>
+                                    <input type="text" name="airtable"
+                                           id="apiKeyInput"
+                                           disabled
+                                           value={props.user.uid}
+                                           className="form--input"/>
+                                    <button id="copy" type="button" className="form--submit"
+                                            onClick={copyToClipboard(props.user.uid, setCopied)}>Copy<span
+                                        className={copied ? "done loading" : "done"}
+                                        aria-hidden="true">Copied</span>
+                                    </button>
+
                                 </div>
-                            </form>
+                                <div className="my-10">
+                                    <label className="w-full">
+                                        <p className="input-label">Base URL</p>
+                                    </label>
+
+                                    <input type="text" name="airtable"
+                                           id="apiKeyInput"
+                                           disabled
+                                           value={"https://flairtable.com/api/v1"}
+                                           className="form--input"/>
+                                    <button id="copy" type="button" className="form--submit"
+                                            onClick={copyToClipboard("https://flairtable.com/api/v1", setCopiedBase)}>Copy<span
+                                        className={copiedBase ? "done loading" : "done"}
+                                        aria-hidden="true">Copied</span>
+                                    </button>
+
+                                </div>
+                                <p className="console--content">
+                                    Enter your api key below to start using Flairtable. Everything works exactly like
+                                    Airtable,
+                                    you'll only get a different base URL and API key.
+                                </p>
+                                <form className="form" onSubmit={submitHandler(apiKey, setLoading, props.user)}>
+                                    <div className="w-full">
+                                        <label>
+                                            <p className="input-label">Your Airtable API key</p>
+                                        </label>
+                                        <input type="text" placeholder={"Enter your airtable API key"} name="airtable"
+                                               value={apiKey}
+                                               onChange={(e) => setApiKey(e.target.value)} className="form--input"/>
+                                        <button className="form--submit" type="submit">Submit<span
+                                            className={loading ? "done loading" : "done"}
+                                            aria-hidden="true">Updated</span></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </Layout>
             <style jsx>{`
           .console{
-            margin-left: 17rem; 
+            @apply overflow-y-auto w-full h-screen;
           }
            .reserve-card {
                 @apply text-sm text-gray-900 flex flex-row pl-1; 

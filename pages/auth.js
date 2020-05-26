@@ -94,23 +94,25 @@ const Auth = (props) => {
     }, [response])
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Console | Auth">
-                <Sidebar active={'auth'}/>
-                <main className="console">
-                    <ConsoleHeader onSignoutClick={onSignoutClick}/>
-                    <div className="console-container">
-                        <h1 className="console--header">
-                            Auth
-                        </h1>
-                        <Table data={users} nextFunction={next} previousFunction={previous} onSearch={setSearch}/>
-                    </div>
-                </main>
+                <div className="flex flex-row">
+                    <Sidebar active={'auth'}/>
+                    <main className="console">
+                        <ConsoleHeader onSignoutClick={onSignoutClick}/>
+                        <div className="console-container">
+                            <h1 className="console--header">
+                                Auth
+                            </h1>
+                            <Table data={users} nextFunction={next} previousFunction={previous} onSearch={setSearch}/>
+                        </div>
+                    </main>
+                </div>
             </Layout>
             <style jsx>{`
             .console--header {
             @apply text-gray-700 text-4xl mt-2 mb-5;
            }
           .console{
-            margin-left: 17rem; 
+            @apply overflow-y-auto w-full h-screen;
           }
            .console-container {
             @apply flex flex-1 justify-start items-start flex-col mb-20 px-8;

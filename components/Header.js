@@ -20,7 +20,12 @@ const Header = (props) => {
                         <span>Menu</span>
                     </button>
                 </div>
-                <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
+                {props.signedIn ? <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
+                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
+                    <Link href={"/console"}><a
+                        className="menu--item">Console</a></Link>
+                    <a onClick={props.onSignoutClick} href={'#'} className="menu--item">Sign Out</a>
+                </div> : <div className="sm:flex flex-1 flex-row justify-end self-center py-2 px-4 hidden">
                     <a href="https://docs.flairtable.com" target="_blank" rel="noopener" className="menu--item">Docs</a>
                     <Link href={"#pricing"}><a
                         className="menu--item">Pricing</a></Link>
@@ -28,29 +33,44 @@ const Header = (props) => {
                         className="menu--item">Sign In</a></Link>
                     <Link href={"/signup"}><a
                         className="menu--item menu--item-accent">Sign Up</a></Link>
-                </div>
+                </div>}
+
             </div>
             {menu ? <div className="relative">
-                <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col">
-                    <Link href={"/signup"}>
-                        <a className="hamburger-menu--item">
-                            <div className="hamburger-menu--item hamburger-menu--item-accent">Sign Up</div>
-                        </a>
-                    </Link>
-                    <Link href={"/login"}>
-                        <a>
-                            <div className="hamburger-menu--item">Sign In
-                            </div>
-                        </a>
-                    </Link>
-                    <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
-                       className="hamburger-menu--item">Docs</a>
-                    <Link href={"#pricing"}>
-                        <a>
-                            <div className="hamburger-menu--item">Pricing</div>
-                        </a>
-                    </Link>
-                </div>
+                {props.signedIn ? <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col">
+                            <a className="hamburger-menu--item" href="#" onClick={props.onSignoutClick}>
+                                <div className="hamburger-menu--item hamburger-menu--item-accent">Sign Out</div>
+                            </a>
+                        <Link href={"/console"}>
+                            <a>
+                                <div className="hamburger-menu--item">Console
+                                </div>
+                            </a>
+                        </Link>
+                        <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
+                           className="hamburger-menu--item">Docs</a>
+                    </div>:
+                    <div className="absolute flex flex-1 left-0 top-0 w-screen flex-col">
+                        <Link href={"/signup"}>
+                            <a className="hamburger-menu--item">
+                                <div className="hamburger-menu--item hamburger-menu--item-accent">Sign Up</div>
+                            </a>
+                        </Link>
+                        <Link href={"/login"}>
+                            <a>
+                                <div className="hamburger-menu--item">Sign In
+                                </div>
+                            </a>
+                        </Link>
+                        <a href="https://docs.flairtable.com" target="_blank" rel="noopener"
+                           className="hamburger-menu--item">Docs</a>
+                        <Link href={"#pricing"}>
+                            <a>
+                                <div className="hamburger-menu--item">Pricing</div>
+                            </a>
+                        </Link>
+                    </div>
+                }
             </div> : null}
 
             <style jsx>{`
@@ -67,7 +87,7 @@ const Header = (props) => {
                 @apply ml-3 self-center mr-1 py-2 flex w-16 h-16;
                 }
                 .header{
-                @apply top-0 pr-3 bg-custom-white w-full flex flex-row px-5
+                @apply top-0 pr-3 bg-custom-white w-full flex flex-row px-5 content-end
                 }
                 .menu--button-cta{
                 @apply flex rounded-full px-5 py-2 ml-2 bg-custom-pink;
