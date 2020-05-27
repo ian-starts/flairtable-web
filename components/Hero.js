@@ -5,21 +5,36 @@ const Hero = (props) => {
     return (
         <div className="flex flex-1 justify-center">
             <div className="hero">
-                <h1 className="hero--header">
-                    Frontend safe Airtable. <br/> <span className="hero--header-accent">Secure</span> and <span
-                    className="hero--header-accent">scope</span> your API key with Flairtable.
-                </h1>
+                <div className="hero--text">
+                    <h1 className="hero--header">
+                        <span className="hero--header-accent">Quickly</span> build a web app <br/> using <span
+                        className="hero--header-accent">Airtable</span> as a datasource.
+                    </h1>
+                    <h2 className="hero--subheader">
+                        Flairtable adds <span className="hero--header-accent">user accounts</span> and a <span
+                        className="hero--header-accent">database</span> to your frontend. It uses <span
+                        className="hero--header-accent">Airtable</span> to persist your data. No more backends, just a
+                        simple Javascript SDK and API.
+                    </h2>
+                </div>
                 <form className="form" action="/signup">
                     <input type="email" placeholder={"Enter your email"} name="email" className="form--input"/>
                     <button className="form--submit" type="submit">Let's Go</button>
                 </form>
             </div>
             <style jsx>{`
+              .hero--text{
+                @apply flex flex-col content-center
+              }
               .hero {
-                  @apply flex flex-1 flex-col max-w-2xl mt-32 mb-16;
+                  @apply flex flex-1 flex-col mt-20 mb-16;
+                  max-width: 60rem;
               }
               .hero--header{
-                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-2 leading-none;
+                  @apply font-sans text-3xl font-bold text-gray-700 text-center mt-2 px-5 leading-none;
+              }
+              .hero--subheader{
+                  @apply font-sans text-xl text-gray-700 text-center mt-10 px-4 leading-snug; 
               }
               .hero--header-accent{
                 @apply text-custom-orange
@@ -46,6 +61,9 @@ const Hero = (props) => {
                 }
                 .hero--header{
                   @apply text-4xl mt-10;
+                }
+                .hero--subheader{
+                  @apply text-2xl;
                 }
                 .form--input{
                   @apply px-5 py-4 flex-1 flex;

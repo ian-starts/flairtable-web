@@ -112,7 +112,7 @@ const Auth = (props) => {
             @apply text-gray-700 text-4xl mt-2 mb-5;
            }
           .console{
-            @apply overflow-y-auto w-full h-screen;
+            @apply overflow-y-auto w-screen h-screen;
           }
            .console-container {
             @apply flex flex-1 justify-start items-start flex-col mb-20 px-8;

@@ -13,13 +13,12 @@ const Sidebar = (props) => {
                 <img src="assets/images/bars-solid.svg" alt="menubar" className="open-menu-button--image"/>
             </button>
             <aside className={`sidebar${open ? ' sidebar__open' : ''}`}>
-                <Link href={'/console'}>
+                <Link href={'/'}>
                     <a className="flex mt-3">
                         <div className="header--logo">
                             <img alt="logo" src="/assets/images/logo-flairtable.svg"/>
                         </div>
                         <h1 className="header--banner">Flairtable</h1>
-
                     </a>
                 </Link>
                 <ul>

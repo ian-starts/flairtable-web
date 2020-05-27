@@ -69,7 +69,7 @@ const Console = (props) => {
             </Layout>
             <style jsx>{`
           .console{
-            @apply overflow-y-auto w-full h-screen;
+            @apply overflow-y-auto w-screen h-screen;
           }
            .reserve-card {
                 @apply text-sm text-gray-900 flex flex-row pl-1; 
