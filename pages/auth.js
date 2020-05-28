@@ -7,7 +7,6 @@ import 'firebase/auth';
 import ConsoleHeader from "../components/ConsoleHeader";
 import Sidebar from "../components/Sidebar";
 import Table from "../components/Table";
-import * as _ from 'lodash';
 
 const Auth = (props) => {
     const [users, setUsers] = useState([]);
@@ -29,7 +28,7 @@ const Auth = (props) => {
                 setLastObject(snapshot.docs[snapshot.docs.length - 1])
                 setResponse(snapshot.docs);
                 if (snapshot.docs) {
-                    setUsers(snapshot.docs.map((item) => item.data()));
+                    setUsers(snapshot.docs.map((item) => ({...item.data(), firebaseId: item.id})));
                 }
             })
             return;
@@ -42,7 +41,7 @@ const Auth = (props) => {
             setLastObject(snapshot.docs[snapshot.docs.length - 1])
             setResponse(snapshot.docs);
             if (snapshot.docs) {
-                setUsers(snapshot.docs.map((item) => item.data()));
+                setUsers(snapshot.docs.map((item) => ({...item.data(), firebaseId: item.id})));
             }
         })
     }, [debouncedSearch])
@@ -61,7 +60,7 @@ const Auth = (props) => {
                             setLastObject(snapshot.docs[snapshot.docs.length - 1])
                             if (snapshot.docs) {
                                 setResponse(snapshot.docs);
-                                setUsers(snapshot.docs.map((item) => item.data()));
+                                setUsers(snapshot.docs.map((item) => ({...item.data(), firebaseId: item.id})));
                             }
                         })
                     }
@@ -84,7 +83,7 @@ const Auth = (props) => {
                         setLastObject(snapshot.docs[snapshot.docs.length - 1])
                         if (snapshot.docs) {
                             setResponse(snapshot.docs);
-                            setUsers(snapshot.docs.map((item) => item.data()));
+                            setUsers(snapshot.docs.map((item) => ({...item.data(), firebaseId: item.id})));
                         }
                     })
                 }
@@ -102,7 +101,7 @@ const Auth = (props) => {
                             <h1 className="console--header">
                                 Auth
                             </h1>
-                            <Table data={users} nextFunction={next} previousFunction={previous} onSearch={setSearch}/>
+                            <Table data={users} nextFunction={next} onDelete={getOnDeleteClick} previousFunction={previous} onSearch={setSearch}/>
                         </div>
                     </main>
                 </div>
@@ -127,6 +126,9 @@ const onSignoutClick = (e) => {
     firebase.auth().signOut();
 }
 
+const getOnDeleteClick = (itemId) => (e) => {
+    firebase.firestore().collection('users').doc(itemId).delete();
+}
 function useDebounce(value, delay) {
     // State and setters for debounced value
     const [debouncedValue, setDebouncedValue] = useState(value);

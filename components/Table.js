@@ -2,6 +2,7 @@ import React from "react";
 import SearchSvg from '../svgs/search-solid.svg'
 import LeftSvg from '../svgs/chevron-left-solid.svg'
 import RightSvg from '../svgs/chevron-right-solid.svg'
+import TrashSvg from '../svgs/trash-alt-solid.svg'
 
 export default (props) => {
     return (
@@ -10,7 +11,9 @@ export default (props) => {
                 <span className="searchbar--icon">
                     <SearchSvg/>
                 </span>
-                <input className="searchbar--input" placeholder={"Search users"} onChange={(event) => {props.onSearch(event.target.value)}}/>
+                <input className="searchbar--input" placeholder={"Search users"} onChange={(event) => {
+                    props.onSearch(event.target.value)
+                }}/>
             </div>
             <div className="overflow-x-scroll">
                 <table className="w-full">
@@ -25,12 +28,16 @@ export default (props) => {
                     </thead>
                     <tbody>
                     {props.data.map((data) => {
-                        return (<tr className="table-row">
+                        return (<tr className="table-row" key={data.id}>
                             <td>{data.email}</td>
                             <td>{(new Date).toDateString()}</td>
                             <td>{(new Date).toDateString()}</td>
                             <td>{data.id}</td>
-                            <td></td>
+                            <td className="actions-row">
+                                <button className="table-row--actions"
+                                    onClick={props.onDelete(data.firebaseId)}><TrashSvg/>
+                                </button>
+                            </td>
                         </tr>)
                     })}
                     </tbody>
@@ -55,6 +62,10 @@ export default (props) => {
               .table-searchbar{
                 @apply bg-gray-200 p-1 flex flex-row rounded-t
               }
+              .actions-row{
+                @apply content-center;
+                min-width: 4.5rem;
+              }
               .table-footer{
                 @apply flex flex-1 flex-row justify-end items-center py-2 px-4 font-sans text-gray-600 text-sm;
               }
@@ -68,7 +79,16 @@ export default (props) => {
                 @apply rounded-lg shadow w-full;
               }
               .table-row{
-                @apply border-b
+                @apply border-b;
+              }
+              .table-row:hover{
+                @apply bg-gray-200;
+              }
+              .table-row:hover .table-row--actions{
+                @apply block;
+              }
+              .table-row--actions{
+                @apply hidden;
               }
               .header-row{
                 @apply border-b text-left bg-gray-200 shadow;
@@ -77,7 +97,7 @@ export default (props) => {
                 @apply font-normal p-4 px-6 text-sm text-gray-800
               }
               td {
-                @apply truncate p-4 px-6 text-sm text-gray-800
+                @apply truncate p-4 px-5 text-sm text-gray-800
               }
             `}</style>
         </div>

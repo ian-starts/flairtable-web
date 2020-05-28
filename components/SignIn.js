@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import firebase from "firebase";
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import {useRouter} from "next/router";
 import Google from "../svgs/logo-google.svg";
 import Github from "../svgs/logo-github.svg";
