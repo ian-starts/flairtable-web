@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Link from "next/link";
 
 const Pricing = (props) => {
     return (
@@ -11,7 +12,7 @@ const Pricing = (props) => {
                     <h1 className="pricing-card__header">
                         FREE
                     </h1>
-                    <div className="pricing-card__innner">
+                    <div className="pricing-card__innner" style={{marginTop: '3.25rem'}}>
                         <ul className="feature-list">
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">USERS</h4>
@@ -19,35 +20,29 @@ const Pricing = (props) => {
                             </li>
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">REQUESTS</h4>
-                                <p className="list-item--content"><span className="text-xl">∞</span> (fair use)</p>
+                                <p className="list-item--content"><span className="text-xl">∞</span>
+                                    <div className="tooltip">(fair use)<span className="tooltip--text">
+                                        10K requests a month. <br/> If you go over twice, we'll send you an email to update your plan.
+                                </span></div>
+                                </p>
                             </li>
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">RECORDS</h4>
-                                <p className="list-item--content"><span className="text-xl">∞</span> (fair use)</p>
+                                <p className="list-item--content"><span className="text-xl">∞</span></p>
                             </li>
                         </ul>
-                        <a className="buy-button"
-                           href={(() => {
-                               if (props.user) {
-                                   if (true) {
-                                       return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
-                                   }
-                                   return `https://gumroad.com/l/flairtable?uid=${props.user.uid}`
-                               }
-                               if (false) {
-                                   return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
-                               }
-                               return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable?uid=')}`
-                           })()}
-                           target="_blank"
-                           rel="noopener">{`Buy $12`}</a>
+                        <Link href="/signup"><a className="buy-button">{`Sign up`}</a>
+                        </Link>
                     </div>
                 </div>
                 <div className="pricing-card">
-                    <h1 className="pricing-card__header">
-                        $30<span className="text-sm">/year</span>
-                    </h1>
                     <div className="pricing-card__innner">
+                        <h1 className="pricing-card__header">
+                            $2.50<span className="text-sm">/month</span>
+                        </h1>
+                        <h1 className="pricing-card__subheader">
+                            Billed $30 per year
+                        </h1>
                         <ul className="feature-list">
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">USERS</h4>
@@ -55,11 +50,15 @@ const Pricing = (props) => {
                             </li>
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">REQUESTS</h4>
-                                <p className="list-item--content"><span className="text-xl">∞</span> (fair use)</p>
+                                <p className="list-item--content"><span className="text-xl">∞</span>
+                                    <div className="tooltip">(fair use)<span className="tooltip--text">
+                                        50K requests a month. <br/>If you go over: no problem, we'll reach out to discuss new pricing.
+                                    </span></div>
+                                </p>
                             </li>
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">RECORDS</h4>
-                                <p className="list-item--content"><span className="text-xl">∞</span> (fair use)</p>
+                                <p className="list-item--content"><span className="text-xl">∞</span></p>
                             </li>
                             <li className={"feature-list--item"}>
                                 <h4 className="list-item--header">SUPPORT</h4>
@@ -69,15 +68,9 @@ const Pricing = (props) => {
                         <a className="buy-button"
                            href={(() => {
                                if (props.user) {
-                                   if (true) {
-                                       return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
-                                   }
-                                   return `https://gumroad.com/l/flairtable?uid=${props.user.uid}`
+                                   return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
                                }
-                               if (false) {
-                                   return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
-                               }
-                               return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable?uid=')}`
+                               return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
                            })()}
                            target="_blank"
                            rel="noopener">{`Buy $12`}</a>
@@ -85,6 +78,32 @@ const Pricing = (props) => {
                 </div>
             </div>
             <style jsx>{`
+              .tooltip {
+                  position: relative;
+                  display: inline-block;
+                  border-bottom: 1px dotted black;
+                }
+                .tooltip .tooltip--text {
+                  visibility: hidden;
+                  width: 180px;
+                  background-color: black;
+                  color: #fff;
+                  text-align: center;
+                  border-radius: 6px;
+                  padding: 0.6rem;
+                
+                  /* Position the tooltip */
+                  position: absolute;
+                  z-index: 1;
+                  bottom: 100%;
+                  left: 50%;
+                  margin-left: -90px;
+                  margin-bottom: 0.3rem;
+                }
+                
+                .tooltip:hover .tooltip--text {
+                  visibility: visible;
+                }
               .pricing-card__innner {
                 @apply flex flex-1 flex-col;
                 max-width: 13rem;
@@ -101,7 +120,7 @@ const Pricing = (props) => {
                 @apply flex flex-col bg-custom-orange-500 pb-16 pt-12 rounded-lg mx-5 px-16 my-5 shadow flex-1;
                 min-width: 14rem;
                 max-width: 22rem;
-                height: 35em
+                height: 38rem
                } 
               .reserve-card__checkbox__hidden {
                   @apply px-3
@@ -133,8 +152,9 @@ const Pricing = (props) => {
                 @apply text-5xl pt-2 font-bold leading-tight text-center;
                color: rgb(80,67,35);
               }
-              .pricing-card--header{
-                @apply text-3xl text-gray-800 px-10
+              .pricing-card__subheader{
+                @apply text-xl pt-6 font-normal leading-tight text-center;
+               color: rgb(80,67,35);
               }
               .reserve-card:hover{
                 @apply cursor-pointer;

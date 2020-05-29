@@ -38,7 +38,7 @@ const Sidebar = (props) => {
                                 <div className="sidebar-item--icon">
                                     <UsersSvg/>
                                 </div>
-                                <h1 className={"sidebar-item--title" + (props.active === 'auth' ? ' sidebar-item--title--active' : '')}>Auth</h1>
+                                <h1 className={"sidebar-item--title" + (props.active === 'auth' ? ' sidebar-item--title--active' : '')}>Users</h1>
                             </a>
                         </Link>
                     </li>
