@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import WithProfile from "../hocs/WithProfile";
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/firestore';
 import 'firebase/auth';
 import ConsoleHeader from "../components/ConsoleHeader";
 import InfoCard from "../components/InfoCard";
@@ -10,22 +11,15 @@ import Sidebar from "../components/Sidebar";
 
 const Console = (props) => {
     const [request, setRequest] = useState(null);
-    const [apiKey, setApiKey] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [copied, setCopied] = useState(false);
-    const [copiedBase, setCopiedBase] = useState(false);
-    const [recurringChecked, setRecurringChecked] = useState(true);
-    useEffect(() => {
-        firebase.database().ref(`tokens/${props.user.uid}`).on('value', (snapshot) => {
-            if (snapshot.val()) {
-                setApiKey(snapshot.val().airtableToken)
-            }
-        })
-    }, []);
+    const [userCount, setUserCount] = useState(null);
     useEffect(() => {
         firebase.database().ref(`requests/${props.user.uid}`).on('value', (snapshot) => {
             setRequest(snapshot.val());
         })
+        firebase.firestore().collection('users')
+            .where('flairtableUserId', '==', props.user.uid).limit(100).onSnapshot((snapshot) => {
+            return setUserCount(snapshot.size);
+        });
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Console">
@@ -38,29 +32,10 @@ const Console = (props) => {
                                 <h1 className="console--header">
                                     Overview
                                 </h1>
-                                {request ?
-                                    <div className="mt-10 flex flex-row flex-wrap">
-                                        <InfoCard total={request.total ?? 100} used={request.count}/>
-                                        <div className="flex justify-start flex-col mt-6 sm:mt-0 sm:ml-10">
-                                            <label className="reserve-card">
-                                                <input type="radio" className={"reserve-card__checkbox"}
-                                                       checked={recurringChecked}
-                                                       name="payment-type"
-                                                       onChange={(e) => setRecurringChecked(true)}/>
-                                                <span className="whitespace-no-wrap">Yearly recurring</span>
-                                            </label>
-                                            <label className="reserve-card">
-                                                <input type="radio" className={"reserve-card__checkbox"}
-                                                       checked={!recurringChecked}
-                                                       name="payment-type"
-                                                       onChange={(e) => setRecurringChecked(false)}/>
-                                                <span className="whitespace-no-wrap">One time payment</span>
-                                            </label>
-                                            <a className="form--submit-checkout"
-                                               href={recurringChecked ? `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}` : `https://gumroad.com/l/flairtable?uid=${props.user.uid}`}
-                                               target="_blank"
-                                               rel="noopener">Add 100k</a>
-                                        </div>
+                                {request && userCount?
+                                    <div className="mt-10 flex flex-row flex-wrap" style={{marginLeft: '-1rem'}}>
+                                        <InfoCard total={request.total ?? 100} used={request.count} unit="Requests"/>
+                                        <InfoCard used={userCount} unit="Users"/>
                                     </div> : null}
                             </div>
                         </div>

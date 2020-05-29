@@ -3,18 +3,20 @@ import Link from "next/link";
 
 const InfoCard = (props) => {
     return (
-        <div className="flex">
+        <div className="flex mx-4">
             <div className="info-card">
                 <div className="header--container">
-                    <p className="info-card--header">Requests</p>
+                    <p className="info-card--header">{props.unit}</p>
                 </div>
                 <div className="content--container">
-                    <h1 className="info-card--content">{props.used.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} / {props.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
+                    <h1 className="info-card--content">
+                        {props.used.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        {props.total? ` / ${props.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}` : ''}</h1>
                 </div>
             </div>
             <style jsx>{`
               .info-card {             
-                @apply rounded-lg shadow
+                @apply rounded-lg shadow min-w-10;
               }
               .content--container{
                 @apply p-5
