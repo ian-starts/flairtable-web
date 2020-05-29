@@ -11,15 +11,10 @@ import Sidebar from "../components/Sidebar";
 
 const Console = (props) => {
     const [request, setRequest] = useState(null);
-    const [userCount, setUserCount] = useState(null);
     useEffect(() => {
         firebase.database().ref(`requests/${props.user.uid}`).on('value', (snapshot) => {
             setRequest(snapshot.val());
         })
-        firebase.firestore().collection('users')
-            .where('flairtableUserId', '==', props.user.uid).limit(100).onSnapshot((snapshot) => {
-            return setUserCount(snapshot.size);
-        });
     }, []);
     return (<div>
             <Layout locale={props.locale} title="Flairtable - Console">
@@ -32,10 +27,20 @@ const Console = (props) => {
                                 <h1 className="console--header">
                                     Overview
                                 </h1>
-                                {request && userCount?
+                                { request ? request.payingUser === true ? null :
+                                <h2 className="console--subheader">
+                                    You account is limited to 5 users. <a
+                                    className="link"
+                                    target="_blank" rel="noopener"
+                                    href={`https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`}>Upgrade
+                                    now</a> to remove that limit.
+                                </h2>: null }
+                                {request ?
                                     <div className="mt-10 flex flex-row flex-wrap" style={{marginLeft: '-1rem'}}>
-                                        <InfoCard total={request.total ?? 100} used={request.count} unit="Requests"/>
-                                        <InfoCard used={userCount} unit="Users"/>
+                                        <InfoCard total={request.payingUser ? 50000 : 10000} used={request.count}
+                                                  unit="Requests"/>
+                                        <InfoCard used={request.users ?? 0} total={request.payingUser ? '∞' : 5}
+                                                  unit="Users"/>
                                     </div> : null}
                             </div>
                         </div>
@@ -90,6 +95,15 @@ const Console = (props) => {
            }
            .console--header {
            @apply text-gray-700 text-4xl my-2;
+           }
+           .console--subheader {
+            @apply text-gray-700 text-lg text-red-500;
+           }
+           .link {
+            @apply underline font-bold;
+           }
+           .link :hover{
+            @apply text-red-600
            }
            .form {
            @apply mt-12 w-full flex flex-row;

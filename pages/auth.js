@@ -17,6 +17,12 @@ const Auth = (props) => {
     const [previous, setPrevious] = useState(null);
     const [search, setSearch] = useState(null);
     const debouncedSearch = useDebounce(search, 200);
+    const [request, setRequest] = useState(null);
+    useEffect(() => {
+        firebase.database().ref(`requests/${props.user.uid}`).on('value', (snapshot) => {
+            setRequest(snapshot.val());
+        })
+    }, []);
     useEffect(() => {
         if (search) {
             const first = firebase.firestore().collection('users')
@@ -101,6 +107,14 @@ const Auth = (props) => {
                             <h1 className="console--header">
                                 Auth
                             </h1>
+                            { request ? request.payingUser === true ? null :
+                                <h2 className="console--subheader">
+                                    You account is limited to 5 users. <a
+                                    className="link"
+                                    target="_blank" rel="noopener"
+                                    href={`https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`}>Upgrade
+                                    now</a> to remove that limit.
+                                </h2>: null }
                             <Table data={users} nextFunction={next} onDelete={getOnDeleteClick} previousFunction={previous} onSearch={setSearch}/>
                         </div>
                     </main>
@@ -108,7 +122,16 @@ const Auth = (props) => {
             </Layout>
             <style jsx>{`
             .console--header {
-            @apply text-gray-700 text-4xl mt-2 mb-5;
+            @apply text-gray-700 text-4xl my-2;
+           }
+           .console--subheader {
+            @apply text-gray-700 text-lg text-red-500 mb-10;
+           }
+           .link {
+            @apply underline font-bold;
+           }
+           .link :hover{
+            @apply text-red-600
            }
           .console{
             @apply overflow-y-auto w-screen h-screen;
