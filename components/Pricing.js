@@ -31,7 +31,7 @@ const Pricing = (props) => {
                                 <p className="list-item--content"><span className="text-xl">∞</span></p>
                             </li>
                         </ul>
-                        <Link href="/signup"><a className="buy-button">{`Sign up`}</a>
+                        <Link href="/signup"><a className="buy-button">{`Try Flairtable`}</a>
                         </Link>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ const Pricing = (props) => {
                                return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
                            })()}
                            target="_blank"
-                           rel="noopener">{`Buy $12`}</a>
+                           rel="noopener">{`Buy Flairtable`}</a>
                     </div>
                 </div>
             </div>
