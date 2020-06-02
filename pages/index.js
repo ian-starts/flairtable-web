@@ -6,7 +6,6 @@ import Features from "../components/Features";
 import Pricing from "../components/Pricing";
 import * as firebase from "firebase/app";
 import 'firebase/auth';
-import ConsoleHeader from "../components/ConsoleHeader";
 import Footer from "../components/Footer";
 
 const Home = (props) => {

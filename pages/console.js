@@ -32,7 +32,7 @@ const Console = (props) => {
                                     You account is limited to 5 users. <a
                                     className="link"
                                     target="_blank" rel="noopener"
-                                    href={`https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`}>Upgrade
+                                    href={`https://gumroad.com/l/flairtable-baas?uid=${props.user.uid}`}>Upgrade
                                     now</a> to remove that limit.
                                 </h2>: null }
                                 {request ?

@@ -5,7 +5,7 @@ const Pricing = (props) => {
     return (
         <div className="text-center mt-20 mb-20">
             <h1 className="pricing-header">
-                Start using an easy, secure and simple <br/>database experience.
+                Start using an easy, secure and simple <br/>back end experience.
             </h1>
             <div className="pricing-cards">
                 <div className="pricing-card">
@@ -68,9 +68,9 @@ const Pricing = (props) => {
                         <a className="buy-button"
                            href={(() => {
                                if (props.user) {
-                                   return `https://gumroad.com/l/flairtable-recurring?uid=${props.user.uid}`;
+                                   return `https://gumroad.com/l/flairtable-baas?uid=${props.user.uid}`;
                                }
-                               return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-recurring?uid=')}`
+                               return `/signup?redirect=${encodeURI('https://gumroad.com/l/flairtable-baas?uid=')}`
                            })()}
                            target="_blank"
                            rel="noopener">{`Buy Flairtable`}</a>

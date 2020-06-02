@@ -8,7 +8,7 @@ const Hero = (props) => {
                 <div className="hero--text">
                     <h1 className="hero--header">
                         <span className="hero--header-accent">Quickly</span> build a web app <br/> using <span
-                        className="hero--header-accent">Airtable</span> as a datasource.
+                        className="hero--header-accent">Airtable</span> as a data source.
                     </h1>
                     <h2 className="hero--subheader">
                         Flairtable adds <span className="hero--header-accent">user accounts</span> and a <span
